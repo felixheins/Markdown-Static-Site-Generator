@@ -484,4 +484,3 @@ python build_site.py /path/to/vault my-custom-theme
 - **Breaking navigation** - Always include navigation styles
 - **Missing fallbacks** - Provide fallback fonts and colors
 
-Need help? Check out the [[Theme Structure]] guide for more details on how themes are organized, or look at [[Styling Examples]] to see all the components in action.

@@ -1,0 +1,38 @@
+# Alternative GitHub Pages Deployment
+# This is a simpler approach using peaceiris/actions-gh-pages
+
+name: Build and Deploy Demo Site
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install dependencies
+      run: |
+        pip install markdown pygments
+        
+    - name: Build site
+      run: |
+        python build_site.py "Demo Site"
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./Outputs/Demo_Site
+        # Optional: Custom domain
+        # cname: your-domain.com

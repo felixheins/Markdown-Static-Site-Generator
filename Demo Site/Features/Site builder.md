@@ -1,115 +1,166 @@
-# Features
+# Site Builder
 
-## Overview
-
-The Markdown Static Site Generator transforms your markdown files into a beautiful static website with minimal configuration.
+Comprehensive guide to the static site generation system.
 
 ## 🏗️ Build System
 
 ### Smart File Processing
-- **Markdown to HTML** - Converts markdown files to web pages
-- **Wiki Link Conversion** - Preserves `[[Page Name]]` linking style
+- **Markdown to HTML** - Converts `.md` files to web pages
+- **Wiki Link Conversion** - Transforms `[[Page Name]]` to proper HTML links
 - **Asset Copying** - Automatically includes images and resources
 - **Navigation Generation** - Creates menus from file structure
 
 ### Directory Intelligence
 - **Automatic Navigation** - Builds dropdown menus from folder hierarchy
-- **Index File Detection** - Uses folder-name.md as directory homepage
+- **Index File Detection** - Uses `folder-name.md` as directory homepage
 - **Privacy Control** - Files starting with `_` excluded from navigation
+- **Resource Handling** - `Resources/` folders copied but not added to navigation
 
 ## 🎨 Theme System
 
 ### Built-in Themes
-- **Paper Theme** - Warm, readable design
-- **Dark Theme** - Modern dark mode
-
-### Theme Features
-- **CSS Variables** - Easy customization with custom properties
-- **Responsive Design** - Works on mobile and desktop
-- **Navigation Styling** - Dropdown menus and hover effects
-
-### Using Themes
 ```bash
-# Use built-in themes
-python build_site.py /vault --theme dark-theme
-
-# Create custom themes in the root directory
+# Available themes
+python build_site.py /vault --theme paper-theme  # Default warm theme
+python build_site.py /vault --theme dark-theme   # Modern dark mode
 ```
+
+### Theme Structure
+Themes use CSS custom properties for easy customization:
+
+```css
+:root {
+  --paper: #fbf9f7;      /* Background color */
+  --ink: #222;           /* Text color */
+  --highlight: #fff8b7;  /* Highlight color */
+  --faint: #666;         /* Secondary text */
+  --accent: #ffb347;     /* Links and accents */
+}
+```
+
+### Creating Custom Themes
+1. Copy an existing theme: `cp paper-theme.css my-theme.css`
+2. Edit CSS variables and styles
+3. Use with: `python build_site.py /vault --theme my-theme`
 
 ## 🔄 Development Server
 
-### Live Development
-- **File Watching** - Monitors markdown and CSS changes
-- **Auto Rebuild** - Regenerates site when files change
-- **Local Server** - Serves your site at localhost:8000
+### Live Development Features
+- **File Watching** - Monitors markdown, CSS, and Python files
+- **Auto Rebuild** - Regenerates site when files change  
+- **Local Server** - Serves your site at `http://localhost:8000`
+- **Background Process** - Non-blocking terminal operation
 
-### Server Options
+### Server Commands
 ```bash
-# Custom port
-python serve.py /vault --port 3000
+# Basic development server
+python serve.py "Demo Site"
 
-# Different theme
-python serve.py /vault dark-theme
+# Custom port and theme
+python serve.py "Demo Site" --port 3000
+python serve.py "Demo Site" dark-theme
+
+# Network accessible (for testing on devices)
+python serve.py "Demo Site" --host 0.0.0.0
 ```
 
 ## 📱 Navigation System
 
 ### Automatic Menu Generation
-- **Hierarchical Structure** - Mirrors your folder organization
-- **Dropdown Menus** - Subdirectories become collapsible sections
-- **Clean URLs** - Converts filenames to web-friendly paths
+The builder creates navigation menus automatically:
 
-## 📝 Content Features
+```
+Your Vault/
+├── Vault Name.md          # Becomes "Home" in navigation
+├── Page One.md            # Root level nav item
+├── Folder/
+│   ├── Folder.md          # Dropdown main item
+│   ├── Subpage.md         # Appears in dropdown
+│   └── _private.md        # Hidden from navigation
+└── Resources/
+    └── image.png          # Copied but not in navigation
+```
 
-### Markdown Support
-- **Standard Markdown** - Headers, lists, links, images
-- **Tables** - Full table formatting
-- **Code Blocks** - Programming code with formatting
+Results in navigation:
+- **Home** (Vault Name)
+- **Page One**  
+- **Folder** ▼
+  - Folder (index)
+  - Subpage
 
-### Link Processing
-- **Wiki Links** - `[[Page Name]]` converted to proper HTML links
-- **Asset Links** - Images and files properly resolved
-- **External Links** - Standard markdown links preserved
+### Privacy and Organization
+- **Underscore Files**: Files starting with `_` are built but hidden from navigation
+- **Resource Exclusion**: `Resources/` folders are copied but not added to menus
+- **Index Priority**: Files matching folder names become dropdown main items
 
 ## 🚀 Static Output
 
-### Generated Files
+### Generated Structure
+```
+Outputs/VaultName/
+├── index.html             # Homepage
+├── page-one.html          # Individual pages (slugified)
+├── folder/
+│   ├── folder.html        # Folder index
+│   ├── subpage.html       # Subpages
+│   └── private.html       # Hidden files (still built)
+├── style.css              # Theme CSS
+└── Resources/             # Copied assets
+    └── image.png
+```
+
+### Deployment Ready Features
 - **Self-contained** - All assets bundled together
 - **No Dependencies** - Pure HTML/CSS output
-- **Fast Loading** - Optimized file structure
+- **Clean URLs** - SEO-friendly page names
+- **Mobile Responsive** - Works on all devices
 
-### Deployment Ready
-- **GitHub Pages** - Can be deployed directly
-- **Netlify/Vercel** - Works with static hosting services
-- **Any Web Server** - Standard HTML files
+## 🔧 Build Commands
 
-## 🔧 Configuration Options
-
-### Build Commands
+### Basic Usage
 ```bash
-# Basic build
-python build_site.py /path/to/vault
+# Build to default output location
+python build_site.py "Your Vault"
 
-# Custom output location
-python build_site.py /vault --output /custom/path
+# Custom output directory  
+python build_site.py "Your Vault" --output /custom/path
 
 # Specific theme
-python build_site.py /vault --theme theme-name
+python build_site.py "Your Vault" --theme dark-theme
+
+# All options together
+python build_site.py "Your Vault" /custom/output dark-theme
 ```
 
-### File Organization
-```
-Your Vault/
-├── Vault Name.md          # Becomes index.html
-├── Page One.md            # Root level page
-├── Folder/
-│   ├── Folder.md          # Folder index
-│   └── Subpage.md         # Appears in dropdown
-└── Resources/
-    └── image.png          # Copied to output
-```
+### Output Locations
+- **Default**: `Outputs/VaultName/` (spaces become underscores)
+- **Custom**: Any directory you specify
+- **Relative**: Relative to script location
+- **Absolute**: Full system paths supported
 
-This system provides everything you need to convert your markdown files into a professional static website.
+## 🎯 Advanced Features
+
+### File Processing Rules
+1. **Markdown files** (`.md`) are converted to HTML
+2. **Index detection** - Files matching folder names become directory indexes  
+3. **Wiki links** - `[[Page Name]]` becomes clickable navigation
+4. **Asset preservation** - All non-markdown files are copied
+5. **Slug generation** - Filenames become URL-friendly
+
+### Theme Development
+Themes are standard CSS files with these requirements:
+- Use CSS custom properties for colors
+- Include navigation styles for dropdowns
+- Provide responsive design rules
+- Support both light and dark preferences
+
+### Performance Considerations
+- **Fast builds** - Efficient markdown processing
+- **Selective updates** - Development server only rebuilds changed files
+- **Optimized output** - Clean HTML structure
+- **Asset handling** - Smart copying without duplication
+
+This build system transforms any organized markdown collection into a professional static website with minimal configuration required.
 
 ## Custom CSS Variables
 
@@ -447,10 +498,3 @@ Use feature detection for advanced CSS:
 ```
 
 These advanced techniques will help you create sophisticated, performant, and accessible themes for the Obsidian Static Site Generator.
-
----
-
-For more theme development guidance, see:
-- [[Creating a New Theme]] - Step-by-step theme creation
-- [[Theme Structure]] - Understanding CSS organization
-- [[Styling Examples]] - Visual examples of all components
