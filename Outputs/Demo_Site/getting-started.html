@@ -20,49 +20,91 @@ nav > ul > li { display: inline-block; }
 body { padding-top: 70px; }
 </style>
 </head><body>
-<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
-<ul class='dropdown-content'>
-<li><a href='documentation.html'>Documentation</a></li>
-<li><a href='features.html'>Features</a></li>
-<li><a href='getting-started.html'>Getting Started</a></li>
-</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
-<ul class='dropdown-content'>
-<li><a href='examples.html'>Examples</a></li>
-<li><a href='advanced-usage.html'>Advanced Usage</a></li>
-<li><a href='implementation-details.html'>Implementation Details</a></li>
-<li><a href='quick-start.html'>Quick Start</a></li>
-</ul></li></ul></nav>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li><a href='contribute.html' class='nav-link'>Contribute</a></li><li><a href='features.html' class='nav-link'>Features</a></li><li><a href='getting-started.html' class='nav-link'>Getting Started</a></li></ul></nav>
 <article>
 <h1 id="getting-started">Getting Started</h1>
-<p>Get up and running with the Obsidian Static Site Generator in minutes.</p>
+<p>Get up and running with the Markdown Static Site Generator in minutes.</p>
 <h2 id="prerequisites">Prerequisites</h2>
 <ul>
 <li>Python 3.7+</li>
-<li>An Obsidian vault with markdown files</li>
+<li>An Obsidian vault or folder with markdown files</li>
 </ul>
 <h2 id="quick-setup">Quick Setup</h2>
 <h3 id="1-download-install">1. Download &amp; Install</h3>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Clone the repository</span>
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/obsidian-static-site-generator
-<span class="nb">cd</span><span class="w"> </span>obsidian-static-site-generator
-
-<span class="c1"># Create virtual environment</span>
-python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/felixheins/Markdown-Static-Site-Generator
+<span class="nb">cd</span><span class="w"> </span>Markdown-Static-Site-Generator
 
 <span class="c1"># Install dependencies</span>
 pip<span class="w"> </span>install<span class="w"> </span>watchdog
 </code></pre></div>
 
-<h3 id="2-build-your-first-site">2. Build Your First Site</h3>
+<h2 id="build-the-demo-site">Build the Demo Site</h2>
+<p>Build this documentation as your first test:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build the demo site (this documentation)</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+
+<span class="c1"># Start development server</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+</code></pre></div>
+
+<p>Visit <code>http://localhost:8000</code> to see the result. The demo site will be generated in <code>Outputs/Demo_Site/</code>.</p>
+<h2 id="your-first-site">Your First Site</h2>
+<p>Now build your own vault:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Build your vault</span>
 python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;/path/to/your/vault&quot;</span>
 
-<span class="c1"># Or start development server</span>
+<span class="c1"># Start development server with live reload</span>
 python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;/path/to/your/vault&quot;</span>
 </code></pre></div>
 
-<p>Your site will be available at <code>http://localhost:8000</code> with live reload enabled.</p>
+<p>Your site will be available at <code>http://localhost:8000</code> and automatically rebuild when you edit files.</p>
+<h3 id="directory-structure">Directory Structure</h3>
+<p>The generator will create:</p>
+<div class="codehilite"><pre><span></span><code>Outputs/
+└── YourVaultName/
+    ├── index.html         # Your site&#39;s homepage
+    ├── page-name.html     # Individual pages
+    ├── style.css          # Theme CSS
+    └── Resources/         # Images and files
+</code></pre></div>
+
+<h2 id="your-custom-theme">Your Custom Theme</h2>
+<p>Create a custom theme by copying an existing one:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Copy the paper theme as a starting point</span>
+cp<span class="w"> </span>paper-theme.css<span class="w"> </span>Themes/my-theme.css
+
+<span class="c1"># Build with your custom theme</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;/path/to/vault&quot;</span><span class="w"> </span>--theme<span class="w"> </span>my-theme
+</code></pre></div>
+
+<p>Edit your theme's CSS variables to customize colors and fonts:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span><span class="w">        </span><span class="c">/* Background color */</span>
+<span class="w">  </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#333333</span><span class="p">;</span><span class="w">          </span><span class="c">/* Text color */</span>
+<span class="w">  </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffeb3b</span><span class="p">;</span><span class="w">    </span><span class="c">/* Highlight color */</span>
+<span class="w">  </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#666666</span><span class="p">;</span><span class="w">        </span><span class="c">/* Secondary text */</span>
+<span class="w">  </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#2196f3</span><span class="p">;</span><span class="w">       </span><span class="c">/* Links and accents */</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="build-options">Build Options</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Different themes</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># Custom output directory</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/custom/path
+
+<span class="c1"># Development server on different port</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
+</code></pre></div>
+
+<h2 id="whats-next">What's Next?</h2>
+<ul>
+<li>Check out <strong><a href="features.html">Features</a></strong> to see all capabilities</li>
+<li>Learn about the theme system and navigation</li>
+<li>Deploy your site to GitHub Pages, Netlify, or any static host</li>
+</ul>
 <h2 id="development-workflow">Development Workflow</h2>
 <ol>
 <li><strong>Edit Content</strong> - Modify markdown files in your vault</li>
@@ -70,7 +112,7 @@ python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&
 <li><strong>Customize Theme</strong> - Edit CSS files in <code>Themes/</code> directory</li>
 <li><strong>Deploy</strong> - Copy <code>Outputs/VaultName/</code> to your hosting service</li>
 </ol>
-<h2 id="directory-structure">Directory Structure</h2>
+<h2 id="directory-structure_1">Directory Structure</h2>
 <div class="codehilite"><pre><span></span><code>obsidian-static-site-generator/
 ├── build_site.py          # Main build script
 ├── serve.py               # Development server
@@ -81,7 +123,7 @@ python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&
     └── YourVault/         # Your built website
 </code></pre></div>
 
-<h2 id="build-options">Build Options</h2>
+<h2 id="build-options_1">Build Options</h2>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Specify output directory</span>
 python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--output<span class="w"> </span>/custom/output
 

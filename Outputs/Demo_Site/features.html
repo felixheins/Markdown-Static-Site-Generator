@@ -20,129 +20,91 @@ nav > ul > li { display: inline-block; }
 body { padding-top: 70px; }
 </style>
 </head><body>
-<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
-<ul class='dropdown-content'>
-<li><a href='documentation.html'>Documentation</a></li>
-<li><a href='features.html'>Features</a></li>
-<li><a href='getting-started.html'>Getting Started</a></li>
-</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
-<ul class='dropdown-content'>
-<li><a href='examples.html'>Examples</a></li>
-<li><a href='advanced-usage.html'>Advanced Usage</a></li>
-<li><a href='implementation-details.html'>Implementation Details</a></li>
-<li><a href='quick-start.html'>Quick Start</a></li>
-</ul></li></ul></nav>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li><a href='contribute.html' class='nav-link'>Contribute</a></li><li><a href='features.html' class='nav-link'>Features</a></li><li><a href='getting-started.html' class='nav-link'>Getting Started</a></li></ul></nav>
 <article>
 <h1 id="features">Features</h1>
-<p>Comprehensive overview of all capabilities in the Obsidian Static Site Generator.</p>
+<h2 id="overview">Overview</h2>
+<p>The Markdown Static Site Generator transforms your markdown files into a beautiful static website with minimal configuration.</p>
 <h2 id="build-system">🏗️ Build System</h2>
 <h3 id="smart-file-processing">Smart File Processing</h3>
 <ul>
-<li><strong>Markdown to HTML</strong> - Full CommonMark support with extensions</li>
-<li><strong>Wiki Link Conversion</strong> - Preserves <code>[Page Name](page-name.html)</code> linking</li>
+<li><strong>Markdown to HTML</strong> - Converts markdown files to web pages</li>
+<li><strong>Wiki Link Conversion</strong> - Preserves <code>[Page Name](page-name.html)</code> linking style</li>
 <li><strong>Asset Copying</strong> - Automatically includes images and resources</li>
-<li><strong>Index Generation</strong> - Creates navigation from file structure</li>
+<li><strong>Navigation Generation</strong> - Creates menus from file structure</li>
 </ul>
 <h3 id="directory-intelligence">Directory Intelligence</h3>
 <ul>
-<li><strong>Automatic Navigation</strong> - Builds menus from folder hierarchy</li>
-<li><strong>Index File Detection</strong> - Uses folder-name.md as directory index</li>
-<li><strong>Root Level Support</strong> - Handles vault-level index files</li>
+<li><strong>Automatic Navigation</strong> - Builds dropdown menus from folder hierarchy</li>
+<li><strong>Index File Detection</strong> - Uses folder-name.md as directory homepage</li>
+<li><strong>Privacy Control</strong> - Files starting with <code>_</code> excluded from navigation</li>
 </ul>
 <h2 id="theme-system">🎨 Theme System</h2>
 <h3 id="built-in-themes">Built-in Themes</h3>
 <ul>
-<li><strong>Paper Theme</strong> - Warm, reMarkable-inspired design</li>
-<li><strong>Dark Theme</strong> - Modern dark mode with blue accents</li>
+<li><strong>Paper Theme</strong> - Warm, readable design</li>
+<li><strong>Dark Theme</strong> - Modern dark mode</li>
 </ul>
 <h3 id="theme-features">Theme Features</h3>
 <ul>
 <li><strong>CSS Variables</strong> - Easy customization with custom properties</li>
-<li><strong>Responsive Design</strong> - Mobile-first approach</li>
+<li><strong>Responsive Design</strong> - Works on mobile and desktop</li>
 <li><strong>Navigation Styling</strong> - Dropdown menus and hover effects</li>
-<li><strong>Typography Control</strong> - Font families, sizes, and spacing</li>
 </ul>
-<h3 id="customization">Customization</h3>
+<h3 id="using-themes">Using Themes</h3>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Use built-in themes</span>
 python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme
 
-<span class="c1"># Create custom themes in Themes/ directory</span>
+<span class="c1"># Create custom themes in the root directory</span>
 </code></pre></div>
 
 <h2 id="development-server">🔄 Development Server</h2>
 <h3 id="live-development">Live Development</h3>
 <ul>
 <li><strong>File Watching</strong> - Monitors markdown and CSS changes</li>
-<li><strong>Auto Rebuild</strong> - Instant site regeneration on save</li>
-<li><strong>Hot Reload</strong> - Browser refresh on changes</li>
-<li><strong>Multi-format Support</strong> - Watches .md, .css, and build scripts</li>
+<li><strong>Auto Rebuild</strong> - Regenerates site when files change</li>
+<li><strong>Local Server</strong> - Serves your site at localhost:8000</li>
 </ul>
-<h3 id="server-features">Server Features</h3>
-<ul>
-<li><strong>Custom Ports</strong> - Avoid conflicts with <code>--port</code> option</li>
-<li><strong>Network Access</strong> - Use <code>--host 0.0.0.0</code> for device testing</li>
-<li><strong>Error Handling</strong> - Clear feedback on build failures</li>
-<li><strong>Background Mode</strong> - Non-blocking terminal operation</li>
-</ul>
+<h3 id="server-options">Server Options</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Custom port</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
+
+<span class="c1"># Different theme</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>dark-theme
+</code></pre></div>
+
 <h2 id="navigation-system">📱 Navigation System</h2>
 <h3 id="automatic-menu-generation">Automatic Menu Generation</h3>
 <ul>
 <li><strong>Hierarchical Structure</strong> - Mirrors your folder organization</li>
 <li><strong>Dropdown Menus</strong> - Subdirectories become collapsible sections</li>
-<li><strong>Smart Ordering</strong> - Index files appear first in dropdowns</li>
-<li><strong>Clean URLs</strong> - Slugified filenames for web-friendly paths</li>
-</ul>
-<h3 id="privacy-controls">Privacy Controls</h3>
-<ul>
-<li><strong>Underscore Files</strong> - Files starting with <code>_</code> excluded from navigation</li>
-<li><strong>Resource Exclusion</strong> - Resources/ folders ignored for navigation</li>
-<li><strong>Selective Processing</strong> - Full control over what appears publicly</li>
+<li><strong>Clean URLs</strong> - Converts filenames to web-friendly paths</li>
 </ul>
 <h2 id="content-features">📝 Content Features</h2>
 <h3 id="markdown-support">Markdown Support</h3>
 <ul>
+<li><strong>Standard Markdown</strong> - Headers, lists, links, images</li>
 <li><strong>Tables</strong> - Full table formatting</li>
-<li><strong>Code Blocks</strong> - Syntax highlighting with language detection</li>
-<li><strong>Footnotes</strong> - Academic-style footnote support</li>
-<li><strong>Table of Contents</strong> - Auto-generated TOC from headers</li>
-<li><strong>Metadata</strong> - Front matter support for titles and meta</li>
+<li><strong>Code Blocks</strong> - Programming code with formatting</li>
 </ul>
 <h3 id="link-processing">Link Processing</h3>
 <ul>
 <li><strong>Wiki Links</strong> - <code>[Page Name](page-name.html)</code> converted to proper HTML links</li>
-<li><strong>Cross References</strong> - Maintains link integrity across pages</li>
 <li><strong>Asset Links</strong> - Images and files properly resolved</li>
 <li><strong>External Links</strong> - Standard markdown links preserved</li>
 </ul>
-<h2 id="deployment-ready">🚀 Deployment Ready</h2>
-<h3 id="static-output">Static Output</h3>
+<h2 id="static-output">🚀 Static Output</h2>
+<h3 id="generated-files">Generated Files</h3>
 <ul>
 <li><strong>Self-contained</strong> - All assets bundled together</li>
-<li><strong>CDN Friendly</strong> - Optimized for content delivery networks</li>
 <li><strong>No Dependencies</strong> - Pure HTML/CSS output</li>
-<li><strong>Fast Loading</strong> - Minimal overhead and optimized structure</li>
+<li><strong>Fast Loading</strong> - Optimized file structure</li>
 </ul>
-<h3 id="hosting-compatibility">Hosting Compatibility</h3>
+<h3 id="deployment-ready">Deployment Ready</h3>
 <ul>
-<li><strong>GitHub Pages</strong> - Direct deployment support</li>
-<li><strong>Netlify</strong> - Drag-and-drop ready</li>
-<li><strong>Vercel</strong> - Static hosting compatible</li>
-<li><strong>Any Web Server</strong> - Standard HTML/CSS/JS output</li>
-</ul>
-<h2 id="performance">⚡ Performance</h2>
-<h3 id="build-optimization">Build Optimization</h3>
-<ul>
-<li><strong>Fast Processing</strong> - Efficient markdown parsing</li>
-<li><strong>Selective Updates</strong> - Development server only rebuilds changed content</li>
-<li><strong>Asset Optimization</strong> - Smart copying and organization</li>
-<li><strong>Memory Efficient</strong> - Handles large vaults without issues</li>
-</ul>
-<h3 id="output-optimization">Output Optimization</h3>
-<ul>
-<li><strong>Clean HTML</strong> - Semantic markup structure</li>
-<li><strong>CSS Variables</strong> - Efficient styling system</li>
-<li><strong>Minimal JavaScript</strong> - Pure CSS navigation system</li>
-<li><strong>Mobile Optimized</strong> - Responsive design patterns</li>
+<li><strong>GitHub Pages</strong> - Can be deployed directly</li>
+<li><strong>Netlify/Vercel</strong> - Works with static hosting services</li>
+<li><strong>Any Web Server</strong> - Standard HTML files</li>
 </ul>
 <h2 id="configuration-options">🔧 Configuration Options</h2>
 <h3 id="build-commands">Build Commands</h3>
@@ -156,46 +118,18 @@ python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span c
 python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--theme<span class="w"> </span>theme-name
 </code></pre></div>
 
-<h3 id="development-server_1">Development Server</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Basic server</span>
-python<span class="w"> </span>serve.py<span class="w"> </span>/path/to/vault
-
-<span class="c1"># Custom port and theme</span>
-python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>theme-name<span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
-
-<span class="c1"># Network accessible</span>
-python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8080</span>
-</code></pre></div>
-
-<h2 id="file-organization">📁 File Organization</h2>
-<h3 id="supported-structure">Supported Structure</h3>
+<h3 id="file-organization">File Organization</h3>
 <div class="codehilite"><pre><span></span><code>Your Vault/
 ├── Vault Name.md          # Becomes index.html
 ├── Page One.md            # Root level page
-├── Page Two.md            # Root level page
 ├── Folder/
-│   ├── Folder.md          # Folder index (dropdown main)
-│   ├── Subpage.md         # Appears in dropdown
-│   └── _private.md        # Hidden from navigation
+│   ├── Folder.md          # Folder index
+│   └── Subpage.md         # Appears in dropdown
 └── Resources/
     └── image.png          # Copied to output
 </code></pre></div>
 
-<h3 id="output-structure">Output Structure</h3>
-<div class="codehilite"><pre><span></span><code>Outputs/VaultName/
-├── index.html             # Main page
-├── page-one.html          # Slugified names
-├── page-two.html
-├── folder/
-│   ├── folder.html        # Folder index
-│   ├── subpage.html
-│   └── private.html       # Still generated, not in nav
-├── style.css              # Theme CSS
-└── Resources/
-    └── image.png          # Copied assets
-</code></pre></div>
-
-<p>This system provides everything you need to convert your Obsidian vault into a professional static website with minimal configuration and maximum flexibility.</p>
+<p>This system provides everything you need to convert your markdown files into a professional static website.</p>
 <h2 id="custom-css-variables">Custom CSS Variables</h2>
 <p>Beyond the basic theme variables, you can create additional CSS custom properties for more complex theming:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>

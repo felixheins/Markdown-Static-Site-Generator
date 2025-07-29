@@ -1,109 +1,87 @@
 # Features
 
-Comprehensive overview of all capabilities in the Obsidian Static Site Generator.
+## Overview
+
+The Markdown Static Site Generator transforms your markdown files into a beautiful static website with minimal configuration.
 
 ## 🏗️ Build System
 
 ### Smart File Processing
-- **Markdown to HTML** - Full CommonMark support with extensions
-- **Wiki Link Conversion** - Preserves `[[Page Name]]` linking
+- **Markdown to HTML** - Converts markdown files to web pages
+- **Wiki Link Conversion** - Preserves `[[Page Name]]` linking style
 - **Asset Copying** - Automatically includes images and resources
-- **Index Generation** - Creates navigation from file structure
+- **Navigation Generation** - Creates menus from file structure
 
 ### Directory Intelligence
-- **Automatic Navigation** - Builds menus from folder hierarchy
-- **Index File Detection** - Uses folder-name.md as directory index
-- **Root Level Support** - Handles vault-level index files
+- **Automatic Navigation** - Builds dropdown menus from folder hierarchy
+- **Index File Detection** - Uses folder-name.md as directory homepage
+- **Privacy Control** - Files starting with `_` excluded from navigation
 
 ## 🎨 Theme System
 
 ### Built-in Themes
-- **Paper Theme** - Warm, reMarkable-inspired design
-- **Dark Theme** - Modern dark mode with blue accents
+- **Paper Theme** - Warm, readable design
+- **Dark Theme** - Modern dark mode
 
 ### Theme Features
 - **CSS Variables** - Easy customization with custom properties
-- **Responsive Design** - Mobile-first approach
+- **Responsive Design** - Works on mobile and desktop
 - **Navigation Styling** - Dropdown menus and hover effects
-- **Typography Control** - Font families, sizes, and spacing
 
-### Customization
+### Using Themes
 ```bash
 # Use built-in themes
 python build_site.py /vault --theme dark-theme
 
-# Create custom themes in Themes/ directory
+# Create custom themes in the root directory
 ```
 
 ## 🔄 Development Server
 
 ### Live Development
 - **File Watching** - Monitors markdown and CSS changes
-- **Auto Rebuild** - Instant site regeneration on save
-- **Hot Reload** - Browser refresh on changes
-- **Multi-format Support** - Watches .md, .css, and build scripts
+- **Auto Rebuild** - Regenerates site when files change
+- **Local Server** - Serves your site at localhost:8000
 
-### Server Features
-- **Custom Ports** - Avoid conflicts with `--port` option
-- **Network Access** - Use `--host 0.0.0.0` for device testing
-- **Error Handling** - Clear feedback on build failures
-- **Background Mode** - Non-blocking terminal operation
+### Server Options
+```bash
+# Custom port
+python serve.py /vault --port 3000
+
+# Different theme
+python serve.py /vault dark-theme
+```
 
 ## 📱 Navigation System
 
 ### Automatic Menu Generation
 - **Hierarchical Structure** - Mirrors your folder organization
 - **Dropdown Menus** - Subdirectories become collapsible sections
-- **Smart Ordering** - Index files appear first in dropdowns
-- **Clean URLs** - Slugified filenames for web-friendly paths
-
-### Privacy Controls
-- **Underscore Files** - Files starting with `_` excluded from navigation
-- **Resource Exclusion** - Resources/ folders ignored for navigation
-- **Selective Processing** - Full control over what appears publicly
+- **Clean URLs** - Converts filenames to web-friendly paths
 
 ## 📝 Content Features
 
 ### Markdown Support
+- **Standard Markdown** - Headers, lists, links, images
 - **Tables** - Full table formatting
-- **Code Blocks** - Syntax highlighting with language detection
-- **Footnotes** - Academic-style footnote support
-- **Table of Contents** - Auto-generated TOC from headers
-- **Metadata** - Front matter support for titles and meta
+- **Code Blocks** - Programming code with formatting
 
 ### Link Processing
 - **Wiki Links** - `[[Page Name]]` converted to proper HTML links
-- **Cross References** - Maintains link integrity across pages
 - **Asset Links** - Images and files properly resolved
 - **External Links** - Standard markdown links preserved
 
-## 🚀 Deployment Ready
+## 🚀 Static Output
 
-### Static Output
+### Generated Files
 - **Self-contained** - All assets bundled together
-- **CDN Friendly** - Optimized for content delivery networks
 - **No Dependencies** - Pure HTML/CSS output
-- **Fast Loading** - Minimal overhead and optimized structure
+- **Fast Loading** - Optimized file structure
 
-### Hosting Compatibility
-- **GitHub Pages** - Direct deployment support
-- **Netlify** - Drag-and-drop ready
-- **Vercel** - Static hosting compatible
-- **Any Web Server** - Standard HTML/CSS/JS output
-
-## ⚡ Performance
-
-### Build Optimization
-- **Fast Processing** - Efficient markdown parsing
-- **Selective Updates** - Development server only rebuilds changed content
-- **Asset Optimization** - Smart copying and organization
-- **Memory Efficient** - Handles large vaults without issues
-
-### Output Optimization
-- **Clean HTML** - Semantic markup structure
-- **CSS Variables** - Efficient styling system
-- **Minimal JavaScript** - Pure CSS navigation system
-- **Mobile Optimized** - Responsive design patterns
+### Deployment Ready
+- **GitHub Pages** - Can be deployed directly
+- **Netlify/Vercel** - Works with static hosting services
+- **Any Web Server** - Standard HTML files
 
 ## 🔧 Configuration Options
 
@@ -119,50 +97,19 @@ python build_site.py /vault --output /custom/path
 python build_site.py /vault --theme theme-name
 ```
 
-### Development Server
-```bash
-# Basic server
-python serve.py /path/to/vault
-
-# Custom port and theme
-python serve.py /vault theme-name --port 3000
-
-# Network accessible
-python serve.py /vault --host 0.0.0.0 --port 8080
-```
-
-## 📁 File Organization
-
-### Supported Structure
+### File Organization
 ```
 Your Vault/
 ├── Vault Name.md          # Becomes index.html
 ├── Page One.md            # Root level page
-├── Page Two.md            # Root level page
 ├── Folder/
-│   ├── Folder.md          # Folder index (dropdown main)
-│   ├── Subpage.md         # Appears in dropdown
-│   └── _private.md        # Hidden from navigation
+│   ├── Folder.md          # Folder index
+│   └── Subpage.md         # Appears in dropdown
 └── Resources/
     └── image.png          # Copied to output
 ```
 
-### Output Structure
-```
-Outputs/VaultName/
-├── index.html             # Main page
-├── page-one.html          # Slugified names
-├── page-two.html
-├── folder/
-│   ├── folder.html        # Folder index
-│   ├── subpage.html
-│   └── private.html       # Still generated, not in nav
-├── style.css              # Theme CSS
-└── Resources/
-    └── image.png          # Copied assets
-```
-
-This system provides everything you need to convert your Obsidian vault into a professional static website with minimal configuration and maximum flexibility.
+This system provides everything you need to convert your markdown files into a professional static website.
 
 ## Custom CSS Variables
 

@@ -20,64 +20,22 @@ nav > ul > li { display: inline-block; }
 body { padding-top: 70px; }
 </style>
 </head><body>
-<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
-<ul class='dropdown-content'>
-<li><a href='documentation.html'>Documentation</a></li>
-<li><a href='features.html'>Features</a></li>
-<li><a href='getting-started.html'>Getting Started</a></li>
-</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
-<ul class='dropdown-content'>
-<li><a href='examples.html'>Examples</a></li>
-<li><a href='advanced-usage.html'>Advanced Usage</a></li>
-<li><a href='implementation-details.html'>Implementation Details</a></li>
-<li><a href='quick-start.html'>Quick Start</a></li>
-</ul></li></ul></nav>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li><a href='contribute.html' class='nav-link'>Contribute</a></li><li><a href='features.html' class='nav-link'>Features</a></li><li><a href='getting-started.html' class='nav-link'>Getting Started</a></li></ul></nav>
 <article>
 <h1 id="markdown-static-site-generator">Markdown Static Site Generator</h1>
-<p>A lightweight, theme-driven static site generator that converts your Obsidian-styled Markdown files into a beautiful website with live development server support.</p>
-<h2 id="overview">Overview</h2>
-<p>Transform your Obsidian markdown files into a fully-featured static website with:
+<p>A lightweight, theme-driven static site generator that converts your Obsidian-styled markdown files into a beautiful website with live development server support.</p>
+<h2 id="intro">Intro</h2>
+<p>Transform your Obsidian markdown files into a static website with:
 - <strong>Wiki-style navigation</strong> - Automatic menu generation from your file structure
 - <strong>Beautiful themes</strong> - Paper and dark themes with responsive design
 - <strong>Live development</strong> - Auto-rebuilding development server with file watching
 - <strong>Zero configuration</strong> - Works out of the box with sensible defaults</p>
-<h2 id="getting-started">Getting Started</h2>
-<h3 id="installation">Installation</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Clone the repository</span>
-git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/obsidian-static-site-generator
-<span class="nb">cd</span><span class="w"> </span>obsidian-static-site-generator
-
-<span class="c1"># Set up virtual environment (recommended)</span>
-python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">  </span><span class="c1"># On Windows: .venv\Scripts\activate</span>
-
-<span class="c1"># Install dependencies</span>
-pip<span class="w"> </span>install<span class="w"> </span>watchdog
-</code></pre></div>
-
-<h3 id="basic-usage">Basic Usage</h3>
-<div class="codehilite"><pre><span></span><code><span class="c1"># Build your vault to static HTML</span>
-python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/your/vault
-
-<span class="c1"># Start development server with live reload</span>
-python<span class="w"> </span>serve.py<span class="w"> </span>/path/to/your/vault
-
-<span class="c1"># Use specific theme</span>
-python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/your/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme
-</code></pre></div>
-
-<p>Your site will be generated in the <code>Outputs/</code> directory, ready to deploy to any static hosting service.</p>
-<h2 id="key-features">Key Features</h2>
-<ul>
-<li><strong>📁 Smart Navigation</strong> - Automatic dropdown menus for subdirectories</li>
-<li><strong>🎨 Theme System</strong> - Easy-to-customize CSS themes with variables</li>
-<li><strong>🔄 Live Development</strong> - File watching with instant rebuilds</li>
-<li><strong>📱 Responsive Design</strong> - Mobile-friendly layouts</li>
-<li><strong>🔗 Wiki Links</strong> - Preserves Obsidian-style <code>[links](links.html)</code></li>
-<li><strong>📝 Markdown Support</strong> - Full CommonMark with extensions</li>
-<li><strong>🚀 Fast Builds</strong> - Efficient processing of large vaults</li>
-<li><strong>📋 Privacy Control</strong> - Files starting with <code>_</code> excluded from navigation</li>
-</ul>
+<p>Perfect for turning your personal knowledge vault into a shareable website or documentation site.</p>
+<h2 id="navigation">Navigation</h2>
+<p>Explore the documentation:
+- <strong><a href="getting-started.html">Getting Started</a></strong> - Set up and build your first site
+- <strong><a href="features.html">Features</a></strong> - Overview of all capabilities
+- <strong><a href="contribute.html">Contribute</a></strong> - Help improve the project</p>
 <hr>
 <p><em>Open source project - contributions welcome!</em></p>
 </article></body></html>

@@ -1,11 +1,11 @@
 # Getting Started
 
-Get up and running with the Obsidian Static Site Generator in minutes.
+Get up and running with the Markdown Static Site Generator in minutes.
 
 ## Prerequisites
 
 - Python 3.7+
-- An Obsidian vault with markdown files
+- An Obsidian vault or folder with markdown files
 
 ## Quick Setup
 
@@ -13,28 +13,95 @@ Get up and running with the Obsidian Static Site Generator in minutes.
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/obsidian-static-site-generator
-cd obsidian-static-site-generator
-
-# Create virtual environment
-python -m venv .venv
-source .venv/bin/activate
+git clone https://github.com/felixheins/Markdown-Static-Site-Generator
+cd Markdown-Static-Site-Generator
 
 # Install dependencies
 pip install watchdog
 ```
 
-### 2. Build Your First Site
+## Build the Demo Site
+
+Build this documentation as your first test:
+
+```bash
+# Build the demo site (this documentation)
+python build_site.py "Demo Site"
+
+# Start development server
+python serve.py "Demo Site"
+```
+
+Visit `http://localhost:8000` to see the result. The demo site will be generated in `Outputs/Demo_Site/`.
+
+## Your First Site
+
+Now build your own vault:
 
 ```bash
 # Build your vault
 python build_site.py "/path/to/your/vault"
 
-# Or start development server
+# Start development server with live reload
 python serve.py "/path/to/your/vault"
 ```
 
-Your site will be available at `http://localhost:8000` with live reload enabled.
+Your site will be available at `http://localhost:8000` and automatically rebuild when you edit files.
+
+### Directory Structure
+
+The generator will create:
+```
+Outputs/
+└── YourVaultName/
+    ├── index.html         # Your site's homepage
+    ├── page-name.html     # Individual pages
+    ├── style.css          # Theme CSS
+    └── Resources/         # Images and files
+```
+
+## Your Custom Theme
+
+Create a custom theme by copying an existing one:
+
+```bash
+# Copy the paper theme as a starting point
+cp paper-theme.css Themes/my-theme.css
+
+# Build with your custom theme
+python build_site.py "/path/to/vault" --theme my-theme
+```
+
+Edit your theme's CSS variables to customize colors and fonts:
+
+```css
+:root {
+  --paper: #ffffff;        /* Background color */
+  --ink: #333333;          /* Text color */
+  --highlight: #ffeb3b;    /* Highlight color */
+  --faint: #666666;        /* Secondary text */
+  --accent: #2196f3;       /* Links and accents */
+}
+```
+
+## Build Options
+
+```bash
+# Different themes
+python build_site.py /vault --theme dark-theme
+
+# Custom output directory
+python build_site.py /vault --output /custom/path
+
+# Development server on different port
+python serve.py /vault --port 3000
+```
+
+## What's Next?
+
+- Check out **[[Features]]** to see all capabilities
+- Learn about the theme system and navigation
+- Deploy your site to GitHub Pages, Netlify, or any static host
 
 ## Development Workflow
 
