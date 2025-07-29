@@ -1,0 +1,197 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Examples</title><link rel='stylesheet' href='style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.top-nav ul { text-align: right; }
+.dropdown { position: relative; display: inline-block; margin-left: 25px; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }
+.nav-link:hover { color: var(--accent); }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav > ul > li { display: inline-block; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='documentation.html'>Documentation</a></li>
+<li><a href='features.html'>Features</a></li>
+<li><a href='getting-started.html'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='examples.html'>Examples</a></li>
+<li><a href='advanced-usage.html'>Advanced Usage</a></li>
+<li><a href='implementation-details.html'>Implementation Details</a></li>
+<li><a href='quick-start.html'>Quick Start</a></li>
+</ul></li></ul></nav>
+<article>
+<h1 id="examples">Examples</h1>
+<p>This is the index page for the Examples section. It demonstrates how directory index files work.</p>
+<h2 id="what-are-examples">What Are Examples?</h2>
+<h1 id="examples_1">Examples</h1>
+<p>Real-world examples and use cases for the Obsidian Static Site Generator.</p>
+<h2 id="example-sites">Example Sites</h2>
+<h3 id="personal-knowledge-base">Personal Knowledge Base</h3>
+<p>Transform your personal Obsidian vault into a public knowledge repository:</p>
+<ul>
+<li><strong>Documentation sites</strong> - Technical guides and tutorials</li>
+<li><strong>Digital gardens</strong> - Interconnected thoughts and ideas</li>
+<li><strong>Research repositories</strong> - Academic notes and references</li>
+<li><strong>Project documentation</strong> - Software project wikis</li>
+</ul>
+<h3 id="blog-style-sites">Blog-style Sites</h3>
+<p>Use the generator for content-focused websites:</p>
+<ul>
+<li><strong>Technical blogs</strong> - Programming tutorials and insights</li>
+<li><strong>Learning journals</strong> - Study notes and progress tracking</li>
+<li><strong>Recipe collections</strong> - Organized cooking knowledge</li>
+<li><strong>Travel guides</strong> - Location-based information</li>
+</ul>
+<h2 id="configuration-examples">Configuration Examples</h2>
+<h3 id="multi-theme-setup">Multi-theme Setup</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build the same content with different themes</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/dist/light<span class="w"> </span>--theme<span class="w"> </span>paper-theme
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/dist/dark<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+</code></pre></div>
+
+<h3 id="development-workflow">Development Workflow</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Terminal 1: Development server</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span>
+
+<span class="c1"># Terminal 2: Theme development  </span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">8001</span><span class="w"> </span>custom-theme
+</code></pre></div>
+
+<h3 id="deployment-examples">Deployment Examples</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># GitHub Pages deployment</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/docs
+
+<span class="c1"># Netlify deployment</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/public
+
+<span class="c1"># Custom hosting</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--output<span class="w"> </span>/var/www/html
+</code></pre></div>
+
+<h2 id="vault-structure-examples">Vault Structure Examples</h2>
+<h3 id="simple-blog-structure">Simple Blog Structure</h3>
+<div class="codehilite"><pre><span></span><code>My Blog/
+├── My Blog.md             # Homepage
+├── About.md               # About page
+├── Contact.md             # Contact page
+├── Posts/
+│   ├── Posts.md           # Blog index
+│   ├── First Post.md      # Individual posts
+│   └── Second Post.md
+└── _drafts/
+    └── _work-in-progress.md  # Hidden from navigation
+</code></pre></div>
+
+<h3 id="documentation-site">Documentation Site</h3>
+<div class="codehilite"><pre><span></span><code>Project Docs/
+├── README.md              # Homepage (Project Docs.md)
+├── Installation.md        # Setup guide
+├── API/
+│   ├── API.md            # API overview
+│   ├── Authentication.md  # Auth docs
+│   └── Endpoints.md      # Endpoint reference
+├── Guides/
+│   ├── Guides.md         # Tutorials index
+│   ├── Quick Start.md    # Getting started
+│   └── Advanced Usage.md # Advanced topics
+└── Resources/
+    └── logo.png          # Assets
+</code></pre></div>
+
+<h3 id="knowledge-base">Knowledge Base</h3>
+<div class="codehilite"><pre><span></span><code>Knowledge Base/
+├── Knowledge Base.md      # Homepage
+├── Programming/
+│   ├── Programming.md     # Programming index
+│   ├── Python/
+│   │   ├── Python.md      # Python index
+│   │   ├── Basics.md      # Python basics
+│   │   └── Advanced.md    # Advanced Python
+│   └── JavaScript/
+│       ├── JavaScript.md  # JS index
+│       └── Frameworks.md  # JS frameworks
+├── Tools/
+│   ├── Tools.md          # Tools index
+│   ├── VS Code.md        # Editor notes
+│   └── Git.md            # Version control
+└── _templates/
+    └── _page-template.md  # Template (hidden)
+</code></pre></div>
+
+<h2 id="integration-examples">Integration Examples</h2>
+<h3 id="github-actions-workflow">GitHub Actions Workflow</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># .github/workflows/deploy.yml</span>
+<span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy Site</span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">deploy</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Setup Python</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">python-version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3.9&#39;</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Install dependencies</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install watchdog</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build site</span>
+<span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python build_site.py vault/ --output dist/</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Deploy to GitHub Pages</span>
+<span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">peaceiris/actions-gh-pages@v3</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${{ secrets.GITHUB_TOKEN }}</span>
+<span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./dist</span>
+</code></pre></div>
+
+<h3 id="docker-setup">Docker Setup</h3>
+<div class="codehilite"><pre><span></span><code><span class="c"># Dockerfile</span>
+<span class="k">FROM</span><span class="w"> </span><span class="s">python:3.9-slim</span>
+<span class="k">WORKDIR</span><span class="w"> </span><span class="s">/app</span>
+<span class="k">COPY</span><span class="w"> </span>requirements.txt<span class="w"> </span>.
+<span class="k">RUN</span><span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<span class="k">COPY</span><span class="w"> </span>.<span class="w"> </span>.
+<span class="k">CMD</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;python&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;serve.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;/vault&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;--host&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>These examples show the flexibility of the generator for different types of content and deployment scenarios.</p>
+<h2 id="available-examples">Available Examples</h2>
+<p>You can find the following examples in this section:</p>
+<ul>
+<li><a href="basic-example.html">Basic Example</a> - Simple markdown formatting</li>
+<li><a href="complex-example.html">Complex Example</a> - Advanced features and combinations</li>
+<li><a href="code-example.html">Code Example</a> - Programming-focused content</li>
+</ul>
+<h2 id="directory-structure">Directory Structure</h2>
+<p>This page exists as <code>Examples/Examples.md</code>, which makes it the "index" page for the Examples directory. When you hover over "Examples" in the main navigation, this page becomes the main link, with other files in the directory appearing as dropdown items.</p>
+<h2 id="index-page-benefits">Index Page Benefits</h2>
+<p>Having an index page for each directory provides:</p>
+<ol>
+<li><strong>Context</strong>: Explains what the section contains</li>
+<li><strong>Navigation</strong>: Overview of available content</li>
+<li><strong>Organization</strong>: Clear structure for visitors</li>
+<li><strong>SEO</strong>: Better search engine understanding</li>
+</ol>
+<h2 id="cross-references">Cross-References</h2>
+<p>From here, you can navigate back to:
+- <a href="demo-site.html">Demo Site</a> - The main homepage
+- <a href="styling-examples.html">Styling Examples</a> - Visual formatting examples
+- <a href="navigation-demo.html">Navigation Demo</a> - How menus work
+- <a href="advanced-features.html">Advanced Features</a> - Complex functionality</p>
+<hr>
+<p>This demonstrates how directory index files create a hierarchical navigation structure.</p>
+</article></body></html>

@@ -1,0 +1,21 @@
+/* Additional CSS styles for demo site */
+
+.demo-highlight {
+    background-color: #ffeb3b;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.code-section {
+    border-left: 4px solid var(--accent);
+    padding-left: 1rem;
+    margin: 1rem 0;
+}
+
+.feature-box {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+}

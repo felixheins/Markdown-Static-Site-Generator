@@ -1,0 +1,30 @@
+# Virtual Environment
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Outputs - ignore all except Demo_Site
+Outputs/*
+!Outputs/Demo_Site/
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Python
+*.egg-info/
+dist/
+build/
+
+# Logs
+*.log
