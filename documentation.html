@@ -1,0 +1,87 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Documentation</title><link rel='stylesheet' href='style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.top-nav ul { text-align: right; }
+.dropdown { position: relative; display: inline-block; margin-left: 25px; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }
+.nav-link:hover { color: var(--accent); }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav > ul > li { display: inline-block; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='documentation.html'>Documentation</a></li>
+<li><a href='features.html'>Features</a></li>
+<li><a href='getting-started.html'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='examples.html'>Examples</a></li>
+<li><a href='advanced-usage.html'>Advanced Usage</a></li>
+<li><a href='implementation-details.html'>Implementation Details</a></li>
+<li><a href='quick-start.html'>Quick Start</a></li>
+</ul></li></ul></nav>
+<article>
+<h1 id="documentation">Documentation</h1>
+<p>Complete documentation for the Obsidian Static Site Generator.</p>
+<h2 id="quick-navigation">Quick Navigation</h2>
+<ul>
+<li><strong><a href="getting-started.html">Getting Started</a></strong> - Installation and basic usage</li>
+<li><strong><a href="features.html">Features</a></strong> - Comprehensive feature overview</li>
+<li><strong><a href="examples.html">Examples</a></strong> - Real-world usage examples</li>
+</ul>
+<h2 id="what-youll-find-here">What You'll Find Here</h2>
+<h3 id="getting-started">Getting Started</h3>
+<p>Step-by-step guide to install and use the generator:
+- Prerequisites and installation
+- Your first build
+- Development workflow
+- Common configuration options</p>
+<h3 id="features">Features</h3>
+<p>Detailed breakdown of all capabilities:
+- Build system architecture
+- Theme system and customization
+- Development server with live reload
+- Navigation generation
+- Content processing and markdown support</p>
+<h3 id="examples">Examples</h3>
+<p>Practical examples and use cases:
+- Quick start walkthrough
+- Advanced usage patterns
+- Implementation details and code examples</p>
+<h2 id="quick-reference">Quick Reference</h2>
+<h3 id="build-commands">Build Commands</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Basic build</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault
+
+<span class="c1"># With theme</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># Development server</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/path/to/vault
+</code></pre></div>
+
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li>✅ Zero configuration setup</li>
+<li>✅ Live development server</li>
+<li>✅ Automatic navigation generation</li>
+<li>✅ Wiki-style linking preservation</li>
+<li>✅ Multiple theme support</li>
+<li>✅ Privacy controls for files</li>
+<li>✅ Responsive design</li>
+<li>✅ Static hosting ready</li>
+</ul>
+<p>Choose a section above to dive deeper into the documentation!</p>
+</article></body></html>

@@ -1,0 +1,368 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Advanced Usage</title><link rel='stylesheet' href='style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.top-nav ul { text-align: right; }
+.dropdown { position: relative; display: inline-block; margin-left: 25px; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }
+.nav-link:hover { color: var(--accent); }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav > ul > li { display: inline-block; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='documentation.html'>Documentation</a></li>
+<li><a href='features.html'>Features</a></li>
+<li><a href='getting-started.html'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='examples.html'>Examples</a></li>
+<li><a href='advanced-usage.html'>Advanced Usage</a></li>
+<li><a href='implementation-details.html'>Implementation Details</a></li>
+<li><a href='quick-start.html'>Quick Start</a></li>
+</ul></li></ul></nav>
+<article>
+<h1 id="complex-example">Complex Example</h1>
+<h1 id="advanced-usage-example">Advanced Usage Example</h1>
+<p>A comprehensive example showing advanced features and organization patterns.</p>
+<h2 id="scenario-technical-documentation-site">Scenario: Technical Documentation Site</h2>
+<p>This example shows how to structure a complex technical documentation site with multiple sections, nested content, and advanced features.</p>
+<h3 id="complex-vault-structure">Complex Vault Structure</h3>
+<div class="codehilite"><pre><span></span><code>TechDocs/
+├── TechDocs.md                    # Homepage
+├── Getting Started/
+│   ├── Getting Started.md         # Quick start guide
+│   ├── Installation.md            # Installation steps
+│   ├── Configuration.md           # Config options
+│   └── _troubleshooting-draft.md  # Hidden from nav
+├── API Documentation/
+│   ├── API Documentation.md       # API overview
+│   ├── Authentication/
+│   │   ├── Authentication.md      # Auth overview
+│   │   ├── OAuth.md              # OAuth details
+│   │   └── API Keys.md           # API key management
+│   ├── Endpoints/
+│   │   ├── Endpoints.md          # Endpoints overview
+│   │   ├── Users.md              # User endpoints
+│   │   ├── Projects.md           # Project endpoints
+│   │   └── Files.md              # File endpoints
+│   └── SDKs/
+│       ├── SDKs.md               # SDK overview
+│       ├── Python SDK.md         # Python integration
+│       ├── JavaScript SDK.md     # JS integration
+│       └── REST Examples.md      # REST examples
+├── Guides/
+│   ├── Guides.md                 # Tutorials index
+│   ├── Beginner/
+│   │   ├── Beginner.md           # Beginner guide index
+│   │   ├── First Steps.md        # Basic tutorial
+│   │   └── Common Patterns.md    # Patterns guide
+│   ├── Advanced/
+│   │   ├── Advanced.md           # Advanced guide index
+│   │   ├── Custom Integrations.md # Integration guide
+│   │   └── Performance.md        # Performance tips
+│   └── Best Practices.md         # General best practices
+├── Reference/
+│   ├── Reference.md              # Reference index
+│   ├── Error Codes.md            # Error reference
+│   ├── Rate Limits.md            # Rate limiting info
+│   └── Changelog.md             # Version history
+├── _internal/
+│   ├── _meeting-notes.md         # Internal notes (hidden)
+│   └── _roadmap-draft.md         # Internal roadmap (hidden)
+└── Resources/
+    ├── architecture-diagram.png  # Technical diagrams
+    ├── flow-chart.svg           # Process flows
+    └── logo.png                 # Branding assets
+</code></pre></div>
+
+<h3 id="generated-navigation-structure">Generated Navigation Structure</h3>
+<p>This complex structure generates the following navigation:</p>
+<ul>
+<li><strong>TechDocs</strong> (homepage)</li>
+<li><strong>Getting Started</strong> (dropdown)</li>
+<li>Getting Started (overview)</li>
+<li>Installation</li>
+<li>Configuration</li>
+<li><strong>API Documentation</strong> (dropdown)</li>
+<li>API Documentation (overview)</li>
+<li><strong>Authentication</strong> (sub-dropdown)<ul>
+<li>Authentication (overview)</li>
+<li>OAuth</li>
+<li>API Keys</li>
+</ul>
+</li>
+<li><strong>Endpoints</strong> (sub-dropdown)<ul>
+<li>Endpoints (overview)</li>
+<li>Users</li>
+<li>Projects</li>
+<li>Files</li>
+</ul>
+</li>
+<li><strong>SDKs</strong> (sub-dropdown)<ul>
+<li>SDKs (overview)</li>
+<li>Python SDK</li>
+<li>JavaScript SDK</li>
+<li>REST Examples</li>
+</ul>
+</li>
+<li><strong>Guides</strong> (dropdown)</li>
+<li>Guides (overview)</li>
+<li><strong>Beginner</strong> (sub-dropdown)<ul>
+<li>Beginner (overview)</li>
+<li>First Steps</li>
+<li>Common Patterns</li>
+</ul>
+</li>
+<li><strong>Advanced</strong> (sub-dropdown)<ul>
+<li>Advanced (overview)</li>
+<li>Custom Integrations</li>
+<li>Performance</li>
+</ul>
+</li>
+<li>Best Practices</li>
+<li><strong>Reference</strong> (dropdown)</li>
+<li>Reference (overview)</li>
+<li>Error Codes</li>
+<li>Rate Limits</li>
+<li>Changelog</li>
+</ul>
+<h3 id="advanced-build-commands">Advanced Build Commands</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build for production with custom output</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>TechDocs<span class="w"> </span>--output<span class="w"> </span>/var/www/docs<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># Development with custom port for team access</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>TechDocs<span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0<span class="w"> </span>--port<span class="w"> </span><span class="m">8080</span>
+
+<span class="c1"># Multiple theme builds for A/B testing</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>TechDocs<span class="w"> </span>--output<span class="w"> </span>dist/light<span class="w"> </span>--theme<span class="w"> </span>paper-theme
+python<span class="w"> </span>build_site.py<span class="w"> </span>TechDocs<span class="w"> </span>--output<span class="w"> </span>dist/dark<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+</code></pre></div>
+
+<h3 id="cross-references-and-linking">Cross-References and Linking</h3>
+<p>The complex structure supports sophisticated cross-referencing:</p>
+<div class="codehilite"><pre><span></span><code><span class="gh"># In API Documentation.md</span>
+For authentication details, see [<span class="nt">Authentication</span>](<span class="na">authentication.html</span>).
+For specific endpoint information, check [<span class="nt">Endpoints</span>](<span class="na">endpoints.html</span>).
+
+<span class="gh"># In OAuth.md  </span>
+After setting up OAuth, you can test with the [<span class="nt">Python SDK</span>](<span class="na">python-sdk.html</span>).
+See [<span class="nt">Error Codes</span>](<span class="na">error-codes.html</span>) for troubleshooting authentication issues.
+
+<span class="gh"># In First Steps.md</span>
+Complete the [<span class="nt">Installation</span>](<span class="na">installation.html</span>) before proceeding.
+Advanced users may skip to [<span class="nt">Advanced</span>](<span class="na">advanced.html</span>) tutorials.
+</code></pre></div>
+
+<h3 id="content-organization-patterns">Content Organization Patterns</h3>
+<h4 id="index-file-strategy">Index File Strategy</h4>
+<p>Each directory has an index file (same name as directory) that serves as:
+- <strong>Overview page</strong> - Explains the section
+- <strong>Navigation hub</strong> - Links to subsections<br>
+- <strong>Main dropdown target</strong> - What users see when clicking dropdown</p>
+<h4 id="privacy-levels">Privacy Levels</h4>
+<ul>
+<li><strong>Public pages</strong> - Normal .md files, appear in navigation</li>
+<li><strong>Hidden pages</strong> - _underscore.md files, accessible but not in navigation</li>
+<li><strong>Resources</strong> - Assets copied but not processed as pages</li>
+</ul>
+<h4 id="hierarchical-information-architecture">Hierarchical Information Architecture</h4>
+<ul>
+<li><strong>Top level</strong> - Major product areas</li>
+<li><strong>Second level</strong> - Functional categories</li>
+<li><strong>Third level</strong> - Specific topics and implementations</li>
+<li><strong>Cross-cutting</strong> - Reference materials accessible from anywhere</li>
+</ul>
+<h3 id="advanced-features-demonstrated">Advanced Features Demonstrated</h3>
+<h4 id="multi-level-dropdowns">Multi-level Dropdowns</h4>
+<p>The navigation system handles nested folders elegantly:
+- Main categories become top-level dropdowns
+- Subdirectories become nested dropdowns
+- Index files serve as section overviews</p>
+<h4 id="asset-management">Asset Management</h4>
+<p>Resources are automatically:
+- Copied to output directory
+- Accessible via relative paths
+- Preserved in original structure</p>
+<h4 id="internal-documentation">Internal Documentation</h4>
+<p>Files starting with <code>_</code> allow for:
+- Internal team documentation
+- Draft content not ready for publication
+- Template files for consistency
+- Meeting notes and planning documents</p>
+<h3 id="deployment-strategies">Deployment Strategies</h3>
+<h4 id="multi-environment-builds">Multi-environment Builds</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Staging environment</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>TechDocs<span class="w"> </span>--output<span class="w"> </span>staging/<span class="w"> </span>--theme<span class="w"> </span>paper-theme
+
+<span class="c1"># Production environment  </span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>TechDocs<span class="w"> </span>--output<span class="w"> </span>production/<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># Internal documentation (includes _internal files)</span>
+<span class="c1"># Custom build script could process these separately</span>
+</code></pre></div>
+
+<h4 id="cicd-integration">CI/CD Integration</h4>
+<div class="codehilite"><pre><span></span><code><span class="c1"># GitHub Actions example</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build documentation</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">python build_site.py TechDocs --output public/</span>
+<span class="w">    </span><span class="no"># Deploy public/ directory to hosting service</span>
+</code></pre></div>
+
+<h2 id="results">Results</h2>
+<p>This advanced example demonstrates:</p>
+<ul>
+<li>✅ <strong>Scalable organization</strong> - Handles complex information hierarchies</li>
+<li>✅ <strong>Professional navigation</strong> - Multi-level dropdowns with clear structure</li>
+<li>✅ <strong>Content privacy</strong> - Internal documents hidden from public navigation</li>
+<li>✅ <strong>Cross-referencing</strong> - Maintains links across complex structures</li>
+<li>✅ <strong>Asset management</strong> - Handles images, diagrams, and resources</li>
+<li>✅ <strong>Team workflows</strong> - Supports collaborative documentation development</li>
+<li>✅ <strong>Deployment flexibility</strong> - Multiple build targets and environments</li>
+</ul>
+<p>This shows how the generator scales from simple personal sites to enterprise-level documentation systems while maintaining simplicity and zero configuration.</p>
+<h2 id="advanced-formatting-combinations">Advanced Formatting Combinations</h2>
+<p>Here's text with <mark>highlighted <strong>bold</strong> text</mark> and other combinations:</p>
+<ul>
+<li><strong>Bold</strong> with <mark>highlighting</mark></li>
+<li><em>Italic</em> with <code>inline code</code></li>
+<li><mark>Highlighted text with <a href="wiki-links.html">wiki links</a></mark> </li>
+</ul>
+<h2 id="nested-lists">Nested Lists</h2>
+<ol>
+<li>First level item</li>
+<li>Second level bullet</li>
+<li>Another second level<ul>
+<li>Third level bullet</li>
+<li>Another third level</li>
+</ul>
+</li>
+<li>Back to first level</li>
+<li>Numbered sub-item</li>
+<li>Another numbered sub-item</li>
+</ol>
+<h2 id="task-lists-with-complex-items">Task Lists with Complex Items</h2>
+<ul>
+<li>[x] Completed task with <mark>highlighting</mark></li>
+<li>[x] Completed task with <strong>bold text</strong></li>
+<li>[ ] Pending task with <code>code</code></li>
+<li>[ ] Pending task with <a href="internal-link.html">Internal Link</a></li>
+</ul>
+<h2 id="complex-code-blocks">Complex Code Blocks</h2>
+<p>Here's a more complex code example with multiple languages:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ObsidianConverter</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vault_path</span><span class="p">,</span> <span class="n">output_path</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vault</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">vault_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">output_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">markdown</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">Markdown</span><span class="p">(</span>
+            <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;toc&quot;</span><span class="p">,</span> <span class="s2">&quot;footnotes&quot;</span><span class="p">,</span> <span class="s2">&quot;tables&quot;</span><span class="p">,</span> <span class="s2">&quot;fenced_code&quot;</span><span class="p">,</span> <span class="s2">&quot;codehilite&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">],</span>
+            <span class="n">extension_configs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;codehilite&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;guess_lang&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">}},</span>
+            <span class="n">output_format</span><span class="o">=</span><span class="s2">&quot;html5&quot;</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_wiki_links</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Convert [wiki links](wiki-links.html) to markdown links&quot;&quot;&quot;</span>
+        <span class="n">pattern</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;\[\[([^\]|]+)(\|([^\]]+))?\]\]&#39;</span>
+        <span class="k">return</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_replace_wiki_link</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build the demo site</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>demo_site_md<span class="w"> </span>demo_output
+
+<span class="c1"># Serve locally for testing</span>
+<span class="nb">cd</span><span class="w"> </span>demo_output
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+
+<h2 id="advanced-tables">Advanced Tables</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Implementation</th>
+<th>Status</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wiki Links</td>
+<td>Regex replacement</td>
+<td>✅ Complete</td>
+<td>Handles aliases</td>
+</tr>
+<tr>
+<td>Highlighting</td>
+<td><code>&lt;mark&gt;text&lt;/mark&gt;</code> → <code>&lt;mark&gt;</code></td>
+<td>✅ Complete</td>
+<td>CSS styled</td>
+</tr>
+<tr>
+<td>Code Blocks</td>
+<td>Pygments</td>
+<td>✅ Complete</td>
+<td>Multiple languages</td>
+</tr>
+<tr>
+<td>Dropdowns</td>
+<td>CSS + HTML</td>
+<td>✅ Complete</td>
+<td>Hover activated</td>
+</tr>
+<tr>
+<td>Assets</td>
+<td>File copying</td>
+<td>✅ Complete</td>
+<td>Preserves structure</td>
+</tr>
+</tbody>
+</table>
+<h2 id="blockquotes-with-complex-content">Blockquotes with Complex Content</h2>
+<blockquote>
+<p>This blockquote contains <mark>highlighted text</mark>, <strong>bold text</strong>, and even <code>code snippets</code>.</p>
+<p>It can also contain <a href="wiki-links.html">wiki links</a> and other markdown features.</p>
+<blockquote>
+<p>Nested blockquotes are also supported
+With their own styling</p>
+</blockquote>
+</blockquote>
+<h2 id="multiple-cross-references">Multiple Cross-References</h2>
+<p>This complex example references:
+- Back to <a href="examples.html">Examples</a> index
+- The simple <a href="basic-example.html">Basic Example</a>
+- Main <a href="demo-site.html">Demo Site</a> page
+- <a href="styling-examples.html">Styling Examples</a> for more visual elements
+- <a href="advanced-features.html">Advanced Features</a> for technical details
+- <a href="navigation-demo.html">Navigation Demo</a> for menu information</p>
+<h2 id="footnotes-and-references">Footnotes and References</h2>
+<p>This converter supports footnotes<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup> and multiple references<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup> within the same document.</p>
+<p>The footnotes appear at the bottom of the page with proper linking<sup id="fnref:3"><a class="footnote-ref" href="#fn:3">3</a></sup>.</p>
+<hr>
+<p>This complex example shows how various markdown features work together in the converted site.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>This is the first footnote with some explanation.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>This is the second footnote with different content.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>This footnote demonstrates multiple references to footnotes within a single document.&#160;<a class="footnote-backref" href="#fnref:3" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</article></body></html>

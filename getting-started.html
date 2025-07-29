@@ -1,0 +1,410 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Getting Started</title><link rel='stylesheet' href='style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.top-nav ul { text-align: right; }
+.dropdown { position: relative; display: inline-block; margin-left: 25px; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }
+.nav-link:hover { color: var(--accent); }
+nav ul { list-style: none; padding: 0; margin: 0; }
+nav > ul > li { display: inline-block; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><ul><li><a href='index.html' class='nav-link'>Demo Site</a></li><li class='dropdown'><a href='documentation.html' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='documentation.html'>Documentation</a></li>
+<li><a href='features.html'>Features</a></li>
+<li><a href='getting-started.html'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='examples.html' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='examples.html'>Examples</a></li>
+<li><a href='advanced-usage.html'>Advanced Usage</a></li>
+<li><a href='implementation-details.html'>Implementation Details</a></li>
+<li><a href='quick-start.html'>Quick Start</a></li>
+</ul></li></ul></nav>
+<article>
+<h1 id="getting-started">Getting Started</h1>
+<p>Get up and running with the Obsidian Static Site Generator in minutes.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<ul>
+<li>Python 3.7+</li>
+<li>An Obsidian vault with markdown files</li>
+</ul>
+<h2 id="quick-setup">Quick Setup</h2>
+<h3 id="1-download-install">1. Download &amp; Install</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Clone the repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/obsidian-static-site-generator
+<span class="nb">cd</span><span class="w"> </span>obsidian-static-site-generator
+
+<span class="c1"># Create virtual environment</span>
+python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+<span class="nb">source</span><span class="w"> </span>.venv/bin/activate
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>watchdog
+</code></pre></div>
+
+<h3 id="2-build-your-first-site">2. Build Your First Site</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build your vault</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;/path/to/your/vault&quot;</span>
+
+<span class="c1"># Or start development server</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;/path/to/your/vault&quot;</span>
+</code></pre></div>
+
+<p>Your site will be available at <code>http://localhost:8000</code> with live reload enabled.</p>
+<h2 id="development-workflow">Development Workflow</h2>
+<ol>
+<li><strong>Edit Content</strong> - Modify markdown files in your vault</li>
+<li><strong>See Changes</strong> - Development server rebuilds automatically</li>
+<li><strong>Customize Theme</strong> - Edit CSS files in <code>Themes/</code> directory</li>
+<li><strong>Deploy</strong> - Copy <code>Outputs/VaultName/</code> to your hosting service</li>
+</ol>
+<h2 id="directory-structure">Directory Structure</h2>
+<div class="codehilite"><pre><span></span><code>obsidian-static-site-generator/
+├── build_site.py          # Main build script
+├── serve.py               # Development server
+├── Themes/                # Theme CSS files
+│   ├── paper-theme.css    # Default theme
+│   └── dark-theme.css     # Dark mode theme
+└── Outputs/               # Generated sites
+    └── YourVault/         # Your built website
+</code></pre></div>
+
+<h2 id="build-options">Build Options</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Specify output directory</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--output<span class="w"> </span>/custom/output
+
+<span class="c1"># Use different theme</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># Development server on custom port</span>
+python<span class="w"> </span>serve.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
+</code></pre></div>
+
+<h2 id="next-steps">Next Steps</h2>
+<ul>
+<li>Explore the <strong>Features</strong> page to see all capabilities</li>
+<li>Try different themes with <code>--theme</code> option</li>
+<li>Customize themes by editing CSS files</li>
+<li>Deploy your site to GitHub Pages, Netlify, or Vercel</li>
+</ul>
+<h2 id="common-issues">Common Issues</h2>
+<p><strong>Port already in use?</strong></p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>serve.py<span class="w"> </span>/path/to/vault<span class="w"> </span>--port<span class="w"> </span><span class="m">8001</span>
+</code></pre></div>
+
+<p><strong>Theme not found?</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># List available themes</span>
+python<span class="w"> </span>build_site.py
+</code></pre></div>
+
+<p><strong>Build errors?</strong>
+- Check that vault path exists
+- Ensure markdown files are valid
+- Verify Python dependencies are installed</p>
+<h2 id="theme-file-structure">Theme File Structure</h2>
+<p>All themes are stored in the <code>Themes/</code> directory with the naming pattern: <code>theme-name.css</code></p>
+<div class="codehilite"><pre><span></span><code>Themes/
+├── paper-theme.css      # Default warm theme
+├── dark-theme.css       # Dark mode theme  
+└── your-theme.css       # Your custom theme
+</code></pre></div>
+
+<h2 id="step-1-create-your-theme-file">Step 1: Create Your Theme File</h2>
+<p>Create a new CSS file in the <code>Themes/</code> directory:</p>
+<div class="codehilite"><pre><span></span><code>touch<span class="w"> </span>Themes/my-custom-theme.css
+</code></pre></div>
+
+<h2 id="step-2-define-css-variables">Step 2: Define CSS Variables</h2>
+<p>Start with the essential CSS custom properties. These variables control the core colors and typography:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* my-custom-theme.css */</span>
+
+<span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffffff</span><span class="p">;</span><span class="w">        </span><span class="c">/* Background color */</span>
+<span class="w">  </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#333333</span><span class="p">;</span><span class="w">          </span><span class="c">/* Primary text color */</span>
+<span class="w">  </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffeb3b</span><span class="p">;</span><span class="w">    </span><span class="c">/* Highlight/selection color */</span>
+<span class="w">  </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#666666</span><span class="p">;</span><span class="w">        </span><span class="c">/* Secondary text color */</span>
+<span class="w">  </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#2196f3</span><span class="p">;</span><span class="w">       </span><span class="c">/* Link and accent color */</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="kt">px</span><span class="p">;</span><span class="w">         </span><span class="c">/* Base font size */</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-3-base-styles">Step 3: Base Styles</h2>
+<p>Add the fundamental styling that all themes need:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">*</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">box-sizing</span><span class="p">:</span><span class="w"> </span><span class="kc">border-box</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nt">html</span><span class="o">,</span><span class="w"> </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--paper</span><span class="p">);</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--ink</span><span class="p">);</span>
+<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="o">-</span><span class="n">apple-system</span><span class="p">,</span><span class="w"> </span><span class="n">BlinkMacSystemFont</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Segoe UI&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Roboto</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="w">  </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="kt">ch</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">rem</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-4-typography">Step 4: Typography</h2>
+<p>Define heading styles and text formatting:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="o">,</span><span class="w"> </span><span class="nt">h4</span><span class="o">,</span><span class="w"> </span><span class="nt">h5</span><span class="o">,</span><span class="w"> </span><span class="nt">h6</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="kc">inherit</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">.6</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">;</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">h1</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="nt">h2</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="nt">h3</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4</span><span class="kt">em</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+
+<span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-5-code-and-content-blocks">Step 5: Code and Content Blocks</h2>
+<p>Style code blocks, quotes, and other content:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">code</span><span class="o">,</span><span class="w"> </span><span class="nt">pre</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;SF Mono&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Monaco</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Cascadia Code&quot;</span><span class="p">,</span><span class="w"> </span><span class="kc">monospace</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">.2</span><span class="kt">em</span><span class="w"> </span><span class="mf">.4</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">pre</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">overflow-x</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-left</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">blockquote</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border-left</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">mark</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">.2</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-6-tables-and-lists">Step 6: Tables and Lists</h2>
+<p>Add table and list styling:</p>
+<div class="codehilite"><pre><span></span><code><span class="nt">table</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border-collapse</span><span class="p">:</span><span class="w"> </span><span class="kc">collapse</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">th</span><span class="o">,</span><span class="w"> </span><span class="nt">td</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">.8</span><span class="kt">em</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">left</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">th</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">ul</span><span class="o">,</span><span class="w"> </span><span class="nt">ol</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">padding-left</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">task-list-item</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">list-style</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">task-list-item</span><span class="w"> </span><span class="nt">input</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">margin-right</span><span class="p">:</span><span class="w"> </span><span class="mf">.8</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">accent-color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-7-responsive-design">Step 7: Responsive Design</h2>
+<p>Make your theme mobile-friendly:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Responsive Design */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">max-width</span><span class="o">:</span><span class="w"> </span><span class="nt">768px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">95</span><span class="kt">%</span><span class="p">;</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nt">h1</span><span class="o">,</span><span class="w"> </span><span class="nt">h2</span><span class="o">,</span><span class="w"> </span><span class="nt">h3</span><span class="o">,</span><span class="w"> </span><span class="nt">h4</span><span class="o">,</span><span class="w"> </span><span class="nt">h5</span><span class="o">,</span><span class="w"> </span><span class="nt">h6</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mf">.5</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nt">table</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">    </span><span class="k">overflow-x</span><span class="p">:</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">    </span><span class="k">white-space</span><span class="p">:</span><span class="w"> </span><span class="kc">nowrap</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">max-width</span><span class="o">:</span><span class="w"> </span><span class="nt">480px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="kt">px</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nt">th</span><span class="o">,</span><span class="w"> </span><span class="nt">td</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">.3</span><span class="kt">em</span><span class="w"> </span><span class="mf">.4</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">min-width</span><span class="o">:</span><span class="w"> </span><span class="nt">1200px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="kt">ch</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-8-navigation-styling">Step 8: Navigation Styling</h2>
+<p>Add responsive navigation styles:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Navigation Styles */</span>
+<span class="p">.</span><span class="nc">navigation</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--paper</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="kt">rem</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin-bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">sticky</span><span class="p">;</span>
+<span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">z-index</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="kt">ch</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="kc">auto</span><span class="p">;</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">  </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">space-between</span><span class="p">;</span>
+<span class="w">  </span><span class="k">align-items</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">  </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">list-style</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--ink</span><span class="p">);</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">font-weight</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">background-color</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c">/* Responsive Navigation */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">max-width</span><span class="o">:</span><span class="w"> </span><span class="nt">768px</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">nav-container</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">flex-direction</span><span class="p">:</span><span class="w"> </span><span class="kc">column</span><span class="p">;</span>
+<span class="w">    </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">flex-wrap</span><span class="p">:</span><span class="w"> </span><span class="kc">wrap</span><span class="p">;</span>
+<span class="w">    </span><span class="k">justify-content</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">    </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-9-final-touches">Step 9: Final Touches</h2>
+<p>Add any special elements and the generated footer:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">callout</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">margin</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">em</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">generated</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">.85</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="w">  </span><span class="k">margin-top</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">  </span><span class="k">text-align</span><span class="p">:</span><span class="w"> </span><span class="kc">center</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-top</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding-top</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="step-10-test-your-theme">Step 10: Test Your Theme</h2>
+<p>Build your site with the new theme:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>build_site.py<span class="w"> </span>/path/to/vault<span class="w"> </span>my-custom-theme
+</code></pre></div>
+
+<h2 id="theme-design-tips">Theme Design Tips</h2>
+<h3 id="color-harmony">Color Harmony</h3>
+<ul>
+<li>Use tools like <a href="https://coolors.co">Coolors.co</a> or <a href="https://color.adobe.com">Adobe Color</a> for color palette generation</li>
+<li>Ensure sufficient contrast for accessibility (4.5:1 minimum for normal text)</li>
+<li>Test your colors in both light and dark environments</li>
+</ul>
+<h3 id="typography">Typography</h3>
+<ul>
+<li>Choose web-safe font stacks or load web fonts</li>
+<li>Maintain consistent vertical rhythm with line-height</li>
+<li>Use a modular scale for font sizes (1.25, 1.414, 1.618 ratios work well)</li>
+</ul>
+<h3 id="responsive-design">Responsive Design</h3>
+<ul>
+<li>Design mobile-first, then enhance for larger screens</li>
+<li>Test on actual devices or browser dev tools</li>
+<li>Consider touch targets (minimum 44px for interactive elements)</li>
+</ul>
+<h3 id="performance">Performance</h3>
+<ul>
+<li>Minimize CSS file size</li>
+<li>Use CSS custom properties for maintainability</li>
+<li>Avoid heavy animations or large background images</li>
+</ul>
+<h2 id="common-pitfalls">Common Pitfalls</h2>
+<ul>
+<li><strong>Forgetting responsive design</strong> - Always test on mobile</li>
+<li><strong>Poor contrast</strong> - Ensure text is readable</li>
+<li><strong>Inconsistent spacing</strong> - Use consistent margins and padding</li>
+<li><strong>Breaking navigation</strong> - Always include navigation styles</li>
+<li><strong>Missing fallbacks</strong> - Provide fallback fonts and colors</li>
+</ul>
+<p>Need help? Check out the <a href="theme-structure.html">Theme Structure</a> guide for more details on how themes are organized, or look at <a href="styling-examples.html">Styling Examples</a> to see all the components in action.</p>
+</article></body></html>

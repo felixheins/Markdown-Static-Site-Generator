@@ -1,0 +1,11 @@
+# Sample Image File
+
+This is a placeholder for an image file. In a real Obsidian vault, this would be an actual image file (PNG, JPG, etc.) that gets copied to the output directory for use in your pages.
+
+Images can be referenced in markdown like:
+
+![Image Description](Resources/sample-image.png)
+
+or with Obsidian embed syntax:
+
+![[sample-image.png]]
