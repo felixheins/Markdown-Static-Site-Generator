@@ -1,0 +1,49 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Basic Example</title><link rel='stylesheet' href='../style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.home-link { flex-shrink: 0; }
+.nav-right { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-right > li { margin-left: 25px; }
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }
+.nav-link:hover { color: var(--accent); }
+.home-link { list-style: none; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><div class='nav-container'>
+<li class='home-link'><a href='../index.html' class='nav-link'>Demo Site</a></li>
+<ul class='nav-right'>
+<li><a href='../advanced-features/' class='nav-link'>Advanced Features</a></li><li><a href='../contribute/' class='nav-link'>Contribute</a></li><li><a href='../creating-a-new-theme/' class='nav-link'>Creating a New Theme</a></li><li><a href='../getting-started/' class='nav-link'>Getting Started</a></li><li><a href='../navigation-demo/' class='nav-link'>Navigation Demo</a></li><li><a href='../styling-examples/' class='nav-link'>Styling Examples</a></li><li><a href='../test-file/' class='nav-link'>Test File</a></li><li><a href='../theme-structure/' class='nav-link'>Theme Structure</a></li><li class='dropdown'><a href='../documentation/' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='../documentation/'>Documentation</a></li>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../getting-started/'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='../examples/' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='../examples/'>Examples</a></li>
+<li><a href='../basic-example/'>Basic Example</a></li>
+<li><a href='../complex-example/'>Complex Example</a></li>
+<li><a href='../implementation-details/'>Implementation Details</a></li>
+</ul></li><li class='dropdown'><a href='../features/' class='dropdown-main'>Features</a>
+<ul class='dropdown-content'>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../markdown/'>Markdown</a></li>
+<li><a href='../site-builder/'>Site builder</a></li>
+</ul></li>
+</ul>
+</div></nav>
+<article>
+
+</article></body></html>

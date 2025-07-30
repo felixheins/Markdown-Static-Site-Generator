@@ -1,0 +1,106 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Contribute</title><link rel='stylesheet' href='../style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.home-link { flex-shrink: 0; }
+.nav-right { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-right > li { margin-left: 25px; }
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }
+.nav-link:hover { color: var(--accent); }
+.home-link { list-style: none; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><div class='nav-container'>
+<li class='home-link'><a href='../index.html' class='nav-link'>Demo Site</a></li>
+<ul class='nav-right'>
+<li><a href='../advanced-features/' class='nav-link'>Advanced Features</a></li><li><a href='../contribute/' class='nav-link'>Contribute</a></li><li><a href='../creating-a-new-theme/' class='nav-link'>Creating a New Theme</a></li><li><a href='../getting-started/' class='nav-link'>Getting Started</a></li><li><a href='../navigation-demo/' class='nav-link'>Navigation Demo</a></li><li><a href='../styling-examples/' class='nav-link'>Styling Examples</a></li><li><a href='../test-file/' class='nav-link'>Test File</a></li><li><a href='../theme-structure/' class='nav-link'>Theme Structure</a></li><li class='dropdown'><a href='../documentation/' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='../documentation/'>Documentation</a></li>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../getting-started/'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='../examples/' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='../examples/'>Examples</a></li>
+<li><a href='../basic-example/'>Basic Example</a></li>
+<li><a href='../complex-example/'>Complex Example</a></li>
+<li><a href='../implementation-details/'>Implementation Details</a></li>
+</ul></li><li class='dropdown'><a href='../features/' class='dropdown-main'>Features</a>
+<ul class='dropdown-content'>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../markdown/'>Markdown</a></li>
+<li><a href='../site-builder/'>Site builder</a></li>
+</ul></li>
+</ul>
+</div></nav>
+<article>
+<h1 id="contribute">Contribute</h1>
+<p>Help improve the Markdown Static Site Generator! Contributions are welcome.</p>
+<h2 id="ways-to-contribute">Ways to Contribute</h2>
+<h3 id="report-issues">🐛 Report Issues</h3>
+<p>Found a bug or have a feature request?
+- Check existing issues on GitHub
+- Create a new issue with clear details
+- Include steps to reproduce bugs</p>
+<h3 id="code-contributions">💻 Code Contributions</h3>
+<p>Want to contribute code?
+- Fork the repository
+- Create a feature branch
+- Make your changes
+- Submit a pull request</p>
+<h3 id="documentation">📚 Documentation</h3>
+<p>Help improve documentation:
+- Fix typos or unclear instructions
+- Add examples and use cases
+- Improve the demo site content</p>
+<h3 id="themes">🎨 Themes</h3>
+<p>Create new themes:
+- Design new CSS themes
+- Share theme files with the community
+- Document theme features</p>
+<h2 id="development-setup">Development Setup</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Clone your fork</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/yourusername/Markdown-Static-Site-Generator
+<span class="nb">cd</span><span class="w"> </span>Markdown-Static-Site-Generator
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>watchdog
+
+<span class="c1"># Test with the demo site</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+</code></pre></div>
+
+<h2 id="code-style">Code Style</h2>
+<ul>
+<li>Follow Python PEP 8 guidelines</li>
+<li>Use clear variable and function names</li>
+<li>Add comments for complex logic</li>
+<li>Test changes with different vault structures</li>
+</ul>
+<h2 id="pull-request-guidelines">Pull Request Guidelines</h2>
+<ol>
+<li><strong>Small, focused changes</strong> - One feature per PR</li>
+<li><strong>Clear description</strong> - Explain what your PR does</li>
+<li><strong>Test thoroughly</strong> - Verify it works with different content</li>
+<li><strong>Update documentation</strong> - Include relevant docs updates</li>
+</ol>
+<h2 id="questions">Questions?</h2>
+<ul>
+<li>Open an issue for questions</li>
+<li>Check existing documentation</li>
+<li>Look at the code structure for guidance</li>
+</ul>
+<p>Thank you for helping make this project better! 🚀</p>
+</article></body></html>

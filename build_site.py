@@ -44,16 +44,21 @@ def preprocess(md:str) -> str:
     return md
 
 # ── navigation generation ─────────────────────────────────────────────────────
-def generate_navigation(pages, vault_index_file=None):
+def generate_navigation(pages, vault_index_file=None, current_depth=0):
     """Generate navigation HTML for all pages"""
-    menu_items = []
+    # Determine path prefix based on depth (0 = root, 1 = subdirectory)
+    path_prefix = "../" if current_depth > 0 else ""
     
     # Add Home link first - use vault index file title if available
+    # This will be left-aligned while other items are right-aligned
     if vault_index_file:
         home_title = vault_index_file[0]  # Use the title of the vault index file
-        menu_items.append(f"<li><a href='index.html' class='nav-link'>{home_title}</a></li>")
+        home_link = f"<li class='home-link'><a href='{path_prefix}index.html' class='nav-link'>{home_title}</a></li>"
     else:
-        menu_items.append(f"<li><a href='index.html' class='nav-link'>Home</a></li>")
+        home_link = f"<li class='home-link'><a href='{path_prefix}index.html' class='nav-link'>Home</a></li>"
+    
+    # Collect other menu items (will be right-aligned)
+    other_items = []
     
     # Sort directories to put root directory first
     sorted_dirs = sorted(pages.keys(), key=lambda x: (str(x) != ".", str(x)))
@@ -65,7 +70,9 @@ def generate_navigation(pages, vault_index_file=None):
             # Add root pages directly to menu (but skip the vault index file since it's already Home)
             for title, slug, is_index, parent_dir in sorted(dir_pages, key=lambda x: (not x[2], x[0])):  # Index files first
                 if slug != "index.html":  # Skip the vault index file
-                    menu_items.append(f"<li><a href='{slug}' class='nav-link'>{title}</a></li>")
+                    # Convert slug to clean URL (remove .html)
+                    clean_url = path_prefix + slug.replace('.html', '/')
+                    other_items.append(f"<li><a href='{clean_url}' class='nav-link'>{title}</a></li>")
         else:
             # Create dropdown for subdirectory
             dir_name = directory.name
@@ -76,9 +83,13 @@ def generate_navigation(pages, vault_index_file=None):
             
             for title, slug, is_index, parent_dir in dir_pages:
                 if is_index:
-                    index_file = (title, slug)
+                    # Convert to clean URL
+                    clean_slug = path_prefix + slug.replace('.html', '/')
+                    index_file = (title, clean_slug)
                 else:
-                    other_files.append((title, slug))
+                    # Convert to clean URL
+                    clean_slug = path_prefix + slug.replace('.html', '/')
+                    other_files.append((title, clean_slug))
             
             # Create dropdown menu item
             if index_file:
@@ -102,9 +113,16 @@ def generate_navigation(pages, vault_index_file=None):
 {file_links}
 </ul>"""
             
-            menu_items.append(f"<li class='dropdown'>{dropdown_content}</li>")
+            other_items.append(f"<li class='dropdown'>{dropdown_content}</li>")
     
-    return f"<ul>{''.join(menu_items)}</ul>"
+    # Combine home link (left) with other items (right) in a flex container
+    other_items_html = ''.join(other_items)
+    return f"""<div class='nav-container'>
+{home_link}
+<ul class='nav-right'>
+{other_items_html}
+</ul>
+</div>"""
 
 # ── main build steps ───────────────────────────────────────────────────────────
 def build_notes(vault:Path, out:Path):
@@ -160,20 +178,38 @@ def build_notes(vault:Path, out:Path):
         md.reset()
     
     # Generate navigation HTML
-    nav_html = generate_navigation(pages, vault_index_file)
+    nav_html = generate_navigation(pages, vault_index_file, 0)
     
     # Second pass: write HTML files with navigation (process ALL files including underscore files)
     for title, slug, is_index, parent_dir, file_path in all_files_to_process:
         raw = file_path.read_text(encoding="utf-8")
         html = md.convert(preprocess(raw))
         
+        # Create directory structure for clean URLs
+        if slug == "index.html":
+            # Main index stays at root
+            output_path = out / "index.html"
+            css_path = "style.css"
+            current_nav_html = generate_navigation(pages, vault_index_file, 0)
+        else:
+            # Create directory for each page with index.html inside
+            page_name = slug.replace('.html', '')
+            page_dir = out / page_name
+            page_dir.mkdir(exist_ok=True)
+            output_path = page_dir / "index.html"
+            css_path = "../style.css"
+            current_nav_html = generate_navigation(pages, vault_index_file, 1)
+        
         tpl=f"""<!doctype html><html lang='en'><head>
 <meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>{title}</title><link rel='stylesheet' href='style.css'>
+<title>{title}</title><link rel='stylesheet' href='{css_path}'>
 <style>
 .top-nav {{ position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }}
-.top-nav ul {{ text-align: right; }}
-.dropdown {{ position: relative; display: inline-block; margin-left: 25px; }}
+.nav-container {{ display: flex; justify-content: space-between; align-items: center; }}
+.home-link {{ flex-shrink: 0; }}
+.nav-right {{ display: flex; list-style: none; margin: 0; padding: 0; }}
+.nav-right > li {{ margin-left: 25px; }}
+.dropdown {{ position: relative; display: inline-block; }}
 .dropdown-content {{ display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }}
 .dropdown-content li {{ list-style: none; }}
 .dropdown-content a {{ color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }}
@@ -182,18 +218,17 @@ def build_notes(vault:Path, out:Path):
 .dropdown:hover .dropdown-content {{ display: block; }}
 .dropdown-main {{ display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }}
 .dropdown-main:hover {{ color: var(--accent); }}
-.nav-link {{ display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }}
+.nav-link {{ display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }}
 .nav-link:hover {{ color: var(--accent); }}
-nav ul {{ list-style: none; padding: 0; margin: 0; }}
-nav > ul > li {{ display: inline-block; }}
+.home-link {{ list-style: none; }}
 body {{ padding-top: 70px; }}
 </style>
 </head><body>
-<nav class="top-nav">{nav_html}</nav>
+<nav class="top-nav">{current_nav_html}</nav>
 <article>
 {html}
 </article></body></html>"""
-        (out/slug).write_text(tpl,encoding="utf-8")
+        output_path.write_text(tpl,encoding="utf-8")
         md.reset()
     
     return pages, vault_index_file
@@ -215,8 +250,11 @@ def write_index(pages, vault_index_file, out:Path):
 <title>Site Index</title><link rel='stylesheet' href='style.css'>
 <style>
 .top-nav {{ position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }}
-.top-nav ul {{ text-align: right; }}
-.dropdown {{ position: relative; display: inline-block; margin-left: 25px; }}
+.nav-container {{ display: flex; justify-content: space-between; align-items: center; }}
+.home-link {{ flex-shrink: 0; }}
+.nav-right {{ display: flex; list-style: none; margin: 0; padding: 0; }}
+.nav-right > li {{ margin-left: 25px; }}
+.dropdown {{ position: relative; display: inline-block; }}
 .dropdown-content {{ display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }}
 .dropdown-content li {{ list-style: none; }}
 .dropdown-content a {{ color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }}
@@ -225,10 +263,9 @@ def write_index(pages, vault_index_file, out:Path):
 .dropdown:hover .dropdown-content {{ display: block; }}
 .dropdown-main {{ display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }}
 .dropdown-main:hover {{ color: var(--accent); }}
-.nav-link {{ display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); margin-left: 25px; }}
+.nav-link {{ display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }}
 .nav-link:hover {{ color: var(--accent); }}
-nav ul {{ list-style: none; padding: 0; margin: 0; }}
-nav > ul > li {{ display: inline-block; }}
+.home-link {{ list-style: none; }}
 body {{ padding-top: 70px; }}
 </style>
 </head><body>

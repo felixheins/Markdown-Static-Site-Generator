@@ -1,0 +1,498 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Site builder</title><link rel='stylesheet' href='../style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.home-link { flex-shrink: 0; }
+.nav-right { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-right > li { margin-left: 25px; }
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }
+.nav-link:hover { color: var(--accent); }
+.home-link { list-style: none; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><div class='nav-container'>
+<li class='home-link'><a href='../index.html' class='nav-link'>Demo Site</a></li>
+<ul class='nav-right'>
+<li><a href='../advanced-features/' class='nav-link'>Advanced Features</a></li><li><a href='../contribute/' class='nav-link'>Contribute</a></li><li><a href='../creating-a-new-theme/' class='nav-link'>Creating a New Theme</a></li><li><a href='../getting-started/' class='nav-link'>Getting Started</a></li><li><a href='../navigation-demo/' class='nav-link'>Navigation Demo</a></li><li><a href='../styling-examples/' class='nav-link'>Styling Examples</a></li><li><a href='../test-file/' class='nav-link'>Test File</a></li><li><a href='../theme-structure/' class='nav-link'>Theme Structure</a></li><li class='dropdown'><a href='../documentation/' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='../documentation/'>Documentation</a></li>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../getting-started/'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='../examples/' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='../examples/'>Examples</a></li>
+<li><a href='../basic-example/'>Basic Example</a></li>
+<li><a href='../complex-example/'>Complex Example</a></li>
+<li><a href='../implementation-details/'>Implementation Details</a></li>
+</ul></li><li class='dropdown'><a href='../features/' class='dropdown-main'>Features</a>
+<ul class='dropdown-content'>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../markdown/'>Markdown</a></li>
+<li><a href='../site-builder/'>Site builder</a></li>
+</ul></li>
+</ul>
+</div></nav>
+<article>
+<h1 id="site-builder">Site Builder</h1>
+<p>Comprehensive guide to the static site generation system.</p>
+<h2 id="build-system">🏗️ Build System</h2>
+<h3 id="smart-file-processing">Smart File Processing</h3>
+<ul>
+<li><strong>Markdown to HTML</strong> - Converts <code>.md</code> files to web pages</li>
+<li><strong>Wiki Link Conversion</strong> - Transforms <code>[Page Name](page-name.html)</code> to proper HTML links</li>
+<li><strong>Asset Copying</strong> - Automatically includes images and resources</li>
+<li><strong>Navigation Generation</strong> - Creates menus from file structure</li>
+</ul>
+<h3 id="directory-intelligence">Directory Intelligence</h3>
+<ul>
+<li><strong>Automatic Navigation</strong> - Builds dropdown menus from folder hierarchy</li>
+<li><strong>Index File Detection</strong> - Uses <code>folder-name.md</code> as directory homepage</li>
+<li><strong>Privacy Control</strong> - Files starting with <code>_</code> excluded from navigation</li>
+<li><strong>Resource Handling</strong> - <code>Resources/</code> folders copied but not added to navigation</li>
+</ul>
+<h2 id="theme-system">🎨 Theme System</h2>
+<h3 id="built-in-themes">Built-in Themes</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Available themes</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--theme<span class="w"> </span>paper-theme<span class="w">  </span><span class="c1"># Default warm theme</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span>/vault<span class="w"> </span>--theme<span class="w"> </span>dark-theme<span class="w">   </span><span class="c1"># Modern dark mode</span>
+</code></pre></div>
+
+<h3 id="theme-structure">Theme Structure</h3>
+<p>Themes use CSS custom properties for easy customization:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#fbf9f7</span><span class="p">;</span><span class="w">      </span><span class="c">/* Background color */</span>
+<span class="w">  </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#222</span><span class="p">;</span><span class="w">           </span><span class="c">/* Text color */</span>
+<span class="w">  </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff8b7</span><span class="p">;</span><span class="w">  </span><span class="c">/* Highlight color */</span>
+<span class="w">  </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#666</span><span class="p">;</span><span class="w">         </span><span class="c">/* Secondary text */</span>
+<span class="w">  </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffb347</span><span class="p">;</span><span class="w">     </span><span class="c">/* Links and accents */</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="creating-custom-themes">Creating Custom Themes</h3>
+<ol>
+<li>Copy an existing theme: <code>cp paper-theme.css my-theme.css</code></li>
+<li>Edit CSS variables and styles</li>
+<li>Use with: <code>python build_site.py /vault --theme my-theme</code></li>
+</ol>
+<h2 id="development-server">🔄 Development Server</h2>
+<h3 id="live-development-features">Live Development Features</h3>
+<ul>
+<li><strong>File Watching</strong> - Monitors markdown, CSS, and Python files</li>
+<li><strong>Auto Rebuild</strong> - Regenerates site when files change  </li>
+<li><strong>Local Server</strong> - Serves your site at <code>http://localhost:8000</code></li>
+<li><strong>Background Process</strong> - Non-blocking terminal operation</li>
+</ul>
+<h3 id="server-commands">Server Commands</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Basic development server</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+
+<span class="c1"># Custom port and theme</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span><span class="w"> </span>--port<span class="w"> </span><span class="m">3000</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span><span class="w"> </span>dark-theme
+
+<span class="c1"># Network accessible (for testing on devices)</span>
+python<span class="w"> </span>serve.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span><span class="w"> </span>--host<span class="w"> </span><span class="m">0</span>.0.0.0
+</code></pre></div>
+
+<h2 id="navigation-system">📱 Navigation System</h2>
+<h3 id="automatic-menu-generation">Automatic Menu Generation</h3>
+<p>The builder creates navigation menus automatically:</p>
+<div class="codehilite"><pre><span></span><code>Your Vault/
+├── Vault Name.md          # Becomes &quot;Home&quot; in navigation
+├── Page One.md            # Root level nav item
+├── Folder/
+│   ├── Folder.md          # Dropdown main item
+│   ├── Subpage.md         # Appears in dropdown
+│   └── _private.md        # Hidden from navigation
+└── Resources/
+    └── image.png          # Copied but not in navigation
+</code></pre></div>
+
+<p>Results in navigation:
+- <strong>Home</strong> (Vault Name)
+- <strong>Page One</strong><br>
+- <strong>Folder</strong> ▼
+  - Folder (index)
+  - Subpage</p>
+<h3 id="privacy-and-organization">Privacy and Organization</h3>
+<ul>
+<li><strong>Underscore Files</strong>: Files starting with <code>_</code> are built but hidden from navigation</li>
+<li><strong>Resource Exclusion</strong>: <code>Resources/</code> folders are copied but not added to menus</li>
+<li><strong>Index Priority</strong>: Files matching folder names become dropdown main items</li>
+</ul>
+<h2 id="static-output">🚀 Static Output</h2>
+<h3 id="generated-structure">Generated Structure</h3>
+<div class="codehilite"><pre><span></span><code>Outputs/VaultName/
+├── index.html             # Homepage
+├── page-one.html          # Individual pages (slugified)
+├── folder/
+│   ├── folder.html        # Folder index
+│   ├── subpage.html       # Subpages
+│   └── private.html       # Hidden files (still built)
+├── style.css              # Theme CSS
+└── Resources/             # Copied assets
+    └── image.png
+</code></pre></div>
+
+<h3 id="deployment-ready-features">Deployment Ready Features</h3>
+<ul>
+<li><strong>Self-contained</strong> - All assets bundled together</li>
+<li><strong>No Dependencies</strong> - Pure HTML/CSS output</li>
+<li><strong>Clean URLs</strong> - SEO-friendly page names</li>
+<li><strong>Mobile Responsive</strong> - Works on all devices</li>
+</ul>
+<h2 id="build-commands">🔧 Build Commands</h2>
+<h3 id="basic-usage">Basic Usage</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Build to default output location</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Your Vault&quot;</span>
+
+<span class="c1"># Custom output directory  </span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Your Vault&quot;</span><span class="w"> </span>--output<span class="w"> </span>/custom/path
+
+<span class="c1"># Specific theme</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Your Vault&quot;</span><span class="w"> </span>--theme<span class="w"> </span>dark-theme
+
+<span class="c1"># All options together</span>
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Your Vault&quot;</span><span class="w"> </span>/custom/output<span class="w"> </span>dark-theme
+</code></pre></div>
+
+<h3 id="output-locations">Output Locations</h3>
+<ul>
+<li><strong>Default</strong>: <code>Outputs/VaultName/</code> (spaces become underscores)</li>
+<li><strong>Custom</strong>: Any directory you specify</li>
+<li><strong>Relative</strong>: Relative to script location</li>
+<li><strong>Absolute</strong>: Full system paths supported</li>
+</ul>
+<h2 id="advanced-features">🎯 Advanced Features</h2>
+<h3 id="file-processing-rules">File Processing Rules</h3>
+<ol>
+<li><strong>Markdown files</strong> (<code>.md</code>) are converted to HTML</li>
+<li><strong>Index detection</strong> - Files matching folder names become directory indexes  </li>
+<li><strong>Wiki links</strong> - <code>[Page Name](page-name.html)</code> becomes clickable navigation</li>
+<li><strong>Asset preservation</strong> - All non-markdown files are copied</li>
+<li><strong>Slug generation</strong> - Filenames become URL-friendly</li>
+</ol>
+<h3 id="theme-development">Theme Development</h3>
+<p>Themes are standard CSS files with these requirements:
+- Use CSS custom properties for colors
+- Include navigation styles for dropdowns
+- Provide responsive design rules
+- Support both light and dark preferences</p>
+<h3 id="performance-considerations">Performance Considerations</h3>
+<ul>
+<li><strong>Fast builds</strong> - Efficient markdown processing</li>
+<li><strong>Selective updates</strong> - Development server only rebuilds changed files</li>
+<li><strong>Optimized output</strong> - Clean HTML structure</li>
+<li><strong>Asset handling</strong> - Smart copying without duplication</li>
+</ul>
+<p>This build system transforms any organized markdown collection into a professional static website with minimal configuration required.</p>
+<h2 id="custom-css-variables">Custom CSS Variables</h2>
+<p>Beyond the basic theme variables, you can create additional CSS custom properties for more complex theming:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c">/* Core theme variables */</span>
+<span class="w">  </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#fbf9f7</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#222</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff8b7</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#666</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffb347</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c">/* Extended variables for advanced theming */</span>
+<span class="w">  </span><span class="nv">--border-radius</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--shadow</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="mi">4</span><span class="kt">px</span><span class="w"> </span><span class="nb">rgba</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="w">  </span><span class="nv">--transition</span><span class="p">:</span><span class="w"> </span><span class="mf">0.2</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="kt">ch</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c">/* Typography scale */</span>
+<span class="w">  </span><span class="nv">--text-xs</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-sm</span><span class="p">:</span><span class="w"> </span><span class="mf">0.875</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-base</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-lg</span><span class="p">:</span><span class="w"> </span><span class="mf">1.125</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--text-xl</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="kt">rem</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c">/* Spacing scale */</span>
+<span class="w">  </span><span class="nv">--space-xs</span><span class="p">:</span><span class="w"> </span><span class="mf">0.25</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--space-sm</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--space-md</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--space-lg</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="kt">rem</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--space-xl</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">rem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="advanced-navigation-styling">Advanced Navigation Styling</h2>
+<h3 id="dropdown-menus">Dropdown Menus</h3>
+<p>The navigation system supports dropdown menus for subdirectories. You can style these with advanced CSS:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">.</span><span class="nc">nav-dropdown</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">relative</span><span class="p">;</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">inline-block</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-dropdown-content</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--paper</span><span class="p">);</span>
+<span class="w">  </span><span class="k">min-width</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--shadow</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--faint</span><span class="p">);</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--border-radius</span><span class="p">);</span>
+<span class="w">  </span><span class="k">z-index</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-dropdown</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">.</span><span class="nc">nav-dropdown-content</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-dropdown-content</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">block</span><span class="p">;</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--space-sm</span><span class="p">)</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--space-md</span><span class="p">);</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">background-color</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-dropdown-content</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--highlight</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="dark-mode-implementation">Dark Mode Implementation</h2>
+<p>Create themes that support automatic dark mode detection:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Default light theme */</span>
+<span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#fbf9f7</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#222</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff8b7</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#666</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#ffb347</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c">/* Dark mode override */</span>
+<span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">prefers-color-scheme</span><span class="o">:</span><span class="w"> </span><span class="nt">dark</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="mh">#1a1a1a</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="mh">#e0e0e0</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="mh">#3a3a00</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="mh">#888</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="mh">#6ab7ff</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c">/* Adjust images for dark mode */</span>
+<span class="w">  </span><span class="nt">img</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">filter</span><span class="p">:</span><span class="w"> </span><span class="nb">brightness</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span><span class="w"> </span><span class="nb">contrast</span><span class="p">(</span><span class="mf">1.2</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="typography-enhancements">Typography Enhancements</h2>
+<h3 id="advanced-font-loading">Advanced Font Loading</h3>
+<p>Load custom fonts efficiently:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Font loading with fallbacks */</span>
+<span class="p">@</span><span class="k">font-face</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">font-family</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;CustomFont&#39;</span><span class="o">;</span>
+<span class="w">  </span><span class="nt">src</span><span class="o">:</span><span class="w"> </span><span class="nt">url</span><span class="o">(</span><span class="s1">&#39;fonts/CustomFont.woff2&#39;</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff2&#39;</span><span class="o">),</span>
+<span class="w">       </span><span class="nt">url</span><span class="o">(</span><span class="s1">&#39;fonts/CustomFont.woff&#39;</span><span class="o">)</span><span class="w"> </span><span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">);</span>
+<span class="w">  </span><span class="nt">font-display</span><span class="o">:</span><span class="w"> </span><span class="nt">swap</span><span class="o">;</span><span class="w"> </span><span class="c">/* Improves loading performance */</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-family</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;CustomFont&#39;</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">apple-system</span><span class="p">,</span><span class="w"> </span><span class="n">BlinkMacSystemFont</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Segoe UI&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Roboto</span><span class="p">,</span><span class="w"> </span><span class="kc">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="responsive-typography">Responsive Typography</h3>
+<p>Create fluid, responsive typography:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Fluid typography that scales with viewport */</span>
+<span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nv">--fluid-min-width</span><span class="p">:</span><span class="w"> </span><span class="mi">320</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--fluid-max-width</span><span class="p">:</span><span class="w"> </span><span class="mi">1140</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--fluid-min-size</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">;</span>
+<span class="w">  </span><span class="nv">--fluid-max-size</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">html</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="nb">calc</span><span class="p">(</span>
+<span class="w">    </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-min-size</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="o">+</span><span class="w"> </span>
+<span class="w">    </span><span class="err">(</span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-max-size</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-min-size</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span>
+<span class="w">    </span><span class="p">(</span><span class="mi">100</span><span class="kt">vw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-min-width</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span>
+<span class="w">    </span><span class="p">(</span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-max-width</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--fluid-min-width</span><span class="p">))</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="animation-and-transitions">Animation and Transitions</h2>
+<p>Add subtle animations to enhance user experience:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Page transition effects */</span>
+<span class="p">.</span><span class="nc">page-content</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">animation</span><span class="p">:</span><span class="w"> </span><span class="n">fadeIn</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="w"> </span><span class="kc">ease-in-out</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">keyframes</span><span class="w"> </span><span class="nt">fadeIn</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">from</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateY</span><span class="p">(</span><span class="mi">10</span><span class="kt">px</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="nt">to</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">opacity</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateY</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c">/* Hover animations */</span>
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="kc">all</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">);</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">relative</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">;</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">  </span><span class="k">bottom</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">  </span><span class="k">height</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">width</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="p">:</span><span class="nd">hover</span><span class="p">::</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">width</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="print-styles">Print Styles</h2>
+<p>Create print-friendly versions of your themes:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="nt">print</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c">/* Remove navigation and interactive elements */</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">navigation</span><span class="o">,</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">nav-dropdown</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c">/* Optimize typography for print */</span>
+<span class="w">  </span><span class="nt">body</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="kt">pt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">line-height</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4</span><span class="p">;</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#000</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c">/* Show URLs for links */</span>
+<span class="w">  </span><span class="nt">a</span><span class="o">[</span><span class="nt">href</span><span class="o">^=</span><span class="s2">&quot;http&quot;</span><span class="o">]</span><span class="p">:</span><span class="nd">after</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">content</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot; (&quot;</span><span class="w"> </span><span class="nb">attr</span><span class="p">(</span><span class="n">href</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;)&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="k">font-size</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="kt">em</span><span class="p">;</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#666</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c">/* Force black text for print */</span>
+<span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="mh">#000</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+<span class="w">    </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="mh">#fff</span><span class="w"> </span><span class="cp">!important</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="accessibility-enhancements">Accessibility Enhancements</h2>
+<h3 id="enhanced-focus-indicators">Enhanced Focus Indicators</h3>
+<p>Create better focus indicators for keyboard navigation:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Enhanced focus styles */</span>
+<span class="nt">a</span><span class="p">:</span><span class="nd">focus</span><span class="o">,</span>
+<span class="nt">button</span><span class="p">:</span><span class="nd">focus</span><span class="o">,</span>
+<span class="o">[</span><span class="nt">tabindex</span><span class="o">]</span><span class="p">:</span><span class="nd">focus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">outline</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">outline-offset</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">border-radius</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--border-radius</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c">/* Skip to content link */</span>
+<span class="p">.</span><span class="nc">skip-to-content</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">position</span><span class="p">:</span><span class="w"> </span><span class="kc">absolute</span><span class="p">;</span>
+<span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">-40</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">left</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">background</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--accent</span><span class="p">);</span>
+<span class="w">  </span><span class="k">color</span><span class="p">:</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--paper</span><span class="p">);</span>
+<span class="w">  </span><span class="k">padding</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="kt">px</span><span class="p">;</span>
+<span class="w">  </span><span class="k">text-decoration</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="kc">top</span><span class="w"> </span><span class="mf">0.3</span><span class="kt">s</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="p">.</span><span class="nc">skip-to-content</span><span class="p">:</span><span class="nd">focus</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">top</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3 id="high-contrast-mode-support">High Contrast Mode Support</h3>
+<p>Support Windows High Contrast mode:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">@</span><span class="k">media</span><span class="w"> </span><span class="o">(</span><span class="nt">prefers-contrast</span><span class="o">:</span><span class="w"> </span><span class="nt">high</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">:</span><span class="nd">root</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nv">--paper</span><span class="p">:</span><span class="w"> </span><span class="n">Canvas</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--ink</span><span class="p">:</span><span class="w"> </span><span class="n">CanvasText</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--accent</span><span class="p">:</span><span class="w"> </span><span class="n">LinkText</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--highlight</span><span class="p">:</span><span class="w"> </span><span class="n">Highlight</span><span class="p">;</span>
+<span class="w">    </span><span class="nv">--faint</span><span class="p">:</span><span class="w"> </span><span class="n">GrayText</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c">/* Remove subtle styling that may not work in high contrast */</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">subtle-border</span><span class="o">,</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">subtle-shadow</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">border</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="kt">px</span><span class="w"> </span><span class="kc">solid</span><span class="p">;</span>
+<span class="w">    </span><span class="k">box-shadow</span><span class="p">:</span><span class="w"> </span><span class="kc">none</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="performance-optimization">Performance Optimization</h2>
+<h3 id="css-optimization">CSS Optimization</h3>
+<p>Optimize your theme CSS for better performance:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Use efficient selectors */</span>
+<span class="p">.</span><span class="nc">nav-links</span><span class="w"> </span><span class="nt">a</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c">/* Good: class-based selector */</span><span class="w"> </span><span class="p">}</span>
+
+<span class="c">/* Minimize repaints and reflows */</span>
+<span class="p">.</span><span class="nc">hover-element</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c">/* Use transform instead of changing position */</span>
+<span class="w">  </span><span class="k">transform</span><span class="p">:</span><span class="w"> </span><span class="nb">translateY</span><span class="p">(</span><span class="mi">-2</span><span class="kt">px</span><span class="p">);</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">transform</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c">/* Optimize animations */</span>
+<span class="p">.</span><span class="nc">animated-element</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c">/* Only animate transform and opacity for best performance */</span>
+<span class="w">  </span><span class="k">transition</span><span class="p">:</span><span class="w"> </span><span class="k">transform</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">),</span><span class="w"> </span><span class="k">opacity</span><span class="w"> </span><span class="nf">var</span><span class="p">(</span><span class="nv">--transition</span><span class="p">);</span>
+<span class="w">  </span><span class="k">will-change</span><span class="p">:</span><span class="w"> </span><span class="k">transform</span><span class="p">,</span><span class="w"> </span><span class="k">opacity</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h2 id="testing-your-advanced-theme">Testing Your Advanced Theme</h2>
+<h3 id="cross-browser-testing">Cross-browser Testing</h3>
+<p>Test your advanced features across different browsers:
+- Chrome/Chromium
+- Firefox<br>
+- Safari
+- Edge</p>
+<h3 id="performance-testing">Performance Testing</h3>
+<p>Use browser dev tools to check:
+- CSS loading time
+- Animation performance (60fps)
+- Mobile performance
+- Accessibility audit scores</p>
+<h3 id="feature-detection">Feature Detection</h3>
+<p>Use feature detection for advanced CSS:</p>
+<div class="codehilite"><pre><span></span><code><span class="c">/* Support for older browsers */</span>
+<span class="p">@</span><span class="k">supports</span><span class="w"> </span><span class="o">(</span><span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">grid</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">advanced-layout</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="p">@</span><span class="k">supports</span><span class="w"> </span><span class="nt">not</span><span class="w"> </span><span class="o">(</span><span class="nt">display</span><span class="o">:</span><span class="w"> </span><span class="nt">grid</span><span class="o">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">.</span><span class="nc">advanced-layout</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="kc">flex</span><span class="p">;</span>
+<span class="w">    </span><span class="k">flex-wrap</span><span class="p">:</span><span class="w"> </span><span class="kc">wrap</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>These advanced techniques will help you create sophisticated, performant, and accessible themes for the Obsidian Static Site Generator.</p>
+</article></body></html>

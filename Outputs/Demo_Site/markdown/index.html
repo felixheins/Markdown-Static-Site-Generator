@@ -1,0 +1,588 @@
+<!doctype html><html lang='en'><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>Markdown</title><link rel='stylesheet' href='../style.css'>
+<style>
+.top-nav { position: fixed; top: 0; left: 0; right: 0; background: var(--paper); padding: 15px 25px; z-index: 1000; border-bottom: 1px solid var(--faint); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.home-link { flex-shrink: 0; }
+.nav-right { display: flex; list-style: none; margin: 0; padding: 0; }
+.nav-right > li { margin-left: 25px; }
+.dropdown { position: relative; display: inline-block; }
+.dropdown-content { display: none; position: absolute; right: 0; background-color: var(--paper); min-width: 200px; box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.15); z-index: 1001; border: 1px solid var(--faint); border-radius: 4px; }
+.dropdown-content li { list-style: none; }
+.dropdown-content a { color: var(--ink); padding: 10px 15px; text-decoration: none; display: block; font-size: 14px; border-bottom: 1px solid #f0f0f0; }
+.dropdown-content a:last-child { border-bottom: none; }
+.dropdown-content a:hover { background-color: var(--highlight); }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-main { display: inline-block; padding: 8px 0; cursor: pointer; color: var(--ink); text-decoration: none; }
+.dropdown-main:hover { color: var(--accent); }
+.nav-link { display: inline-block; padding: 8px 0; text-decoration: none; color: var(--ink); }
+.nav-link:hover { color: var(--accent); }
+.home-link { list-style: none; }
+body { padding-top: 70px; }
+</style>
+</head><body>
+<nav class="top-nav"><div class='nav-container'>
+<li class='home-link'><a href='../index.html' class='nav-link'>Demo Site</a></li>
+<ul class='nav-right'>
+<li><a href='../advanced-features/' class='nav-link'>Advanced Features</a></li><li><a href='../contribute/' class='nav-link'>Contribute</a></li><li><a href='../creating-a-new-theme/' class='nav-link'>Creating a New Theme</a></li><li><a href='../getting-started/' class='nav-link'>Getting Started</a></li><li><a href='../navigation-demo/' class='nav-link'>Navigation Demo</a></li><li><a href='../styling-examples/' class='nav-link'>Styling Examples</a></li><li><a href='../test-file/' class='nav-link'>Test File</a></li><li><a href='../theme-structure/' class='nav-link'>Theme Structure</a></li><li class='dropdown'><a href='../documentation/' class='dropdown-main'>Documentation</a>
+<ul class='dropdown-content'>
+<li><a href='../documentation/'>Documentation</a></li>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../getting-started/'>Getting Started</a></li>
+</ul></li><li class='dropdown'><a href='../examples/' class='dropdown-main'>Examples</a>
+<ul class='dropdown-content'>
+<li><a href='../examples/'>Examples</a></li>
+<li><a href='../basic-example/'>Basic Example</a></li>
+<li><a href='../complex-example/'>Complex Example</a></li>
+<li><a href='../implementation-details/'>Implementation Details</a></li>
+</ul></li><li class='dropdown'><a href='../features/' class='dropdown-main'>Features</a>
+<ul class='dropdown-content'>
+<li><a href='../features/'>Features</a></li>
+<li><a href='../markdown/'>Markdown</a></li>
+<li><a href='../site-builder/'>Site builder</a></li>
+</ul></li>
+</ul>
+</div></nav>
+<article>
+<h1 id="markdown-support">Markdown Support</h1>
+<p>Complete showcase of all markdown elements supported by the Markdown Static Site Generator.</p>
+<h2 id="text-formatting">Text Formatting</h2>
+<p><strong>Bold text</strong> </p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gs">**Bold text**</span>
+</code></pre></div>
+
+
+</details>
+
+<p><em>Italic text</em></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="ge">*Italic text*</span>
+</code></pre></div>
+
+
+</details>
+
+<p><strong><em>Bold and italic</em></strong></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>***Bold and italic***
+</code></pre></div>
+
+
+</details>
+
+<p>~~Strikethrough~~</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gd">~~Strikethrough~~</span>
+</code></pre></div>
+
+
+</details>
+
+<p><mark>Highlighted text</mark></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>&lt;mark&gt;Highlighted text&lt;/mark&gt;
+</code></pre></div>
+
+
+</details>
+
+<p>Inline <code>code</code> with backticks</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>Inline <span class="sb">`code`</span> with backticks
+</code></pre></div>
+
+
+</details>
+
+<h2 id="headers">Headers</h2>
+<h1 id="header-1">Header 1</h1>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gh"># Header 1</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="header-2">Header 2</h2>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gu">## Header 2</span>
+</code></pre></div>
+
+
+</details>
+
+<h3 id="header-3">Header 3</h3>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gu">### Header 3</span>
+</code></pre></div>
+
+
+</details>
+
+<h4 id="header-4">Header 4</h4>
+<h5 id="header-5">Header 5</h5>
+<h6 id="header-6">Header 6</h6>
+<details><summary>Show syntax for Headers 4-6</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gu">#### Header 4</span>
+<span class="gu">##### Header 5</span>
+<span class="gu">###### Header 6</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="lists">Lists</h2>
+<h3 id="unordered-lists">Unordered Lists</h3>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+<li>Nested item</li>
+<li>Another nested item</li>
+<li>Item 3</li>
+</ul>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="k">-</span><span class="w"> </span>Item 1
+<span class="k">-</span><span class="w"> </span>Item 2
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Nested item
+<span class="w">  </span><span class="k">-</span><span class="w"> </span>Another nested item
+<span class="k">-</span><span class="w"> </span>Item 3
+</code></pre></div>
+
+
+</details>
+
+<h3 id="ordered-lists">Ordered Lists</h3>
+<ol>
+<li>First item</li>
+<li>Second item</li>
+<li>Nested numbered item</li>
+<li>Another nested item</li>
+<li>Third item</li>
+</ol>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="k">1.</span> First item
+<span class="k">2.</span> Second item
+<span class="w">   </span><span class="k">1.</span> Nested numbered item
+<span class="w">   </span><span class="k">2.</span> Another nested item
+<span class="k">3.</span> Third item
+</code></pre></div>
+
+
+</details>
+
+<h3 id="task-lists">Task Lists</h3>
+<ul>
+<li>[x] Completed task</li>
+<li>[ ] Incomplete task</li>
+<li>[x] Another completed task</li>
+</ul>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="k">- [x]</span> Completed task
+<span class="k">- [ ]</span> Incomplete task
+<span class="k">- [x]</span> Another completed task
+</code></pre></div>
+
+
+</details>
+
+<h2 id="links">Links</h2>
+<h3 id="standard-links">Standard Links</h3>
+<p><a href="https://example.com">External link</a></p>
+<p><a href="https://example.com" title="Title text">Link with title</a></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>[<span class="nt">External link</span>](<span class="na">https://example.com</span>)
+[<span class="nt">Link with title</span>](<span class="na">https://example.com &quot;Title text&quot;</span>)
+</code></pre></div>
+
+
+</details>
+
+<h3 id="wiki-links-obsidian-style">Wiki Links (Obsidian-style)</h3>
+<p><a href="getting-started.html">Getting Started</a> - Links to other pages</p>
+<p><a href="features.html">Custom link text</a> - Wiki link with custom display text</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>[<span class="nt">Getting Started</span>](<span class="na">getting-started.html</span>)
+[<span class="nt">Custom link text</span>](<span class="na">features.html</span>)
+</code></pre></div>
+
+
+</details>
+
+<h3 id="reference-links">Reference Links</h3>
+<p><a href="https://example.com">Reference link</a></p>
+<p><a href="https://github.com">Another reference</a></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>[<span class="nt">Reference link</span>][<span class="nl">1</span>]
+[<span class="nt">Another reference</span>][<span class="nl">ref</span>]
+
+[<span class="nl">1</span>]: <span class="na">https://example.com</span>
+[<span class="nl">ref</span>]: <span class="na">https://github.com</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="images">Images</h2>
+<p><img alt="Alt text" src="Resources/sample-image.txt" title="Optional title"></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>![<span class="nt">Alt text</span>](<span class="na">Resources/sample-image.txt &quot;Optional title&quot;</span>)
+</code></pre></div>
+
+
+</details>
+
+<h3 id="image-with-reference">Image with Reference</h3>
+<p><img alt="Reference image" src="Resources/sample-image.txt" title="Sample image"></p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>![Reference image][img1]
+
+[<span class="nl">img1</span>]: <span class="na">Resources/sample-image.txt &quot;Sample image&quot;</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="code-blocks">Code Blocks</h2>
+<h3 id="basic-code-block">Basic Code Block</h3>
+<div class="codehilite"><pre><span></span><code>Plain code block
+No syntax highlighting
+</code></pre></div>
+
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="sb">```</span>
+<span class="sb">Plain code block</span>
+<span class="sb">No syntax highlighting</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+
+</details>
+
+<h3 id="syntax-highlighted-code">Syntax Highlighted Code</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div>
+
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="sb">```python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hello_world</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Hello, World!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+
+</details>
+
+<div class="codehilite"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">greetUser</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">name</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="sb">```javascript</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">greetUser</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">name</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+
+</details>
+
+<div class="codehilite"><pre><span></span><code><span class="c1"># Shell commands</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/directory
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+</code></pre></div>
+
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="sb">```bash</span>
+<span class="c1"># Shell commands</span>
+<span class="nb">cd</span><span class="w"> </span>/path/to/directory
+python<span class="w"> </span>build_site.py<span class="w"> </span><span class="s2">&quot;Demo Site&quot;</span>
+<span class="sb">```</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="tables">Tables</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Description</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Wiki Links</td>
+<td><code>[Page Name](page-name.html)</code> linking</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Themes</td>
+<td>CSS-based styling</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Live Server</td>
+<td>Development server</td>
+<td>✅ Supported</td>
+</tr>
+<tr>
+<td>Tables</td>
+<td>This table!</td>
+<td>✅ Supported</td>
+</tr>
+</tbody>
+</table>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>| Feature | Description | Status |
+|---------|-------------|--------|
+| Wiki Links | <span class="sb">`[Page Name](page-name.html)`</span> linking | ✅ Supported |
+| Themes | CSS-based styling | ✅ Supported |
+| Live Server | Development server | ✅ Supported |
+| Tables | This table! | ✅ Supported |
+</code></pre></div>
+
+
+</details>
+
+<h3 id="table-alignment">Table Alignment</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Left Aligned</th>
+<th style="text-align: center;">Center Aligned</th>
+<th style="text-align: right;">Right Aligned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">Left</td>
+<td style="text-align: center;">Center</td>
+<td style="text-align: right;">Right</td>
+</tr>
+<tr>
+<td style="text-align: left;">Text</td>
+<td style="text-align: center;">Text</td>
+<td style="text-align: right;">Text</td>
+</tr>
+</tbody>
+</table>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>| Left Aligned | Center Aligned | Right Aligned |
+|:-------------|:--------------:|--------------:|
+| Left | Center | Right |
+| Text | Text | Text |
+</code></pre></div>
+
+
+</details>
+
+<h2 id="quotes">Quotes</h2>
+<blockquote>
+<p>This is a blockquote</p>
+<p>It can span multiple lines
+and paragraphs</p>
+</blockquote>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="k">&gt; </span><span class="ge">This is a blockquote</span>
+&gt; 
+<span class="k">&gt; </span><span class="ge">It can span multiple lines</span>
+<span class="k">&gt; </span><span class="ge">and paragraphs</span>
+</code></pre></div>
+
+
+</details>
+
+<blockquote>
+<p>Nested quotes:</p>
+<blockquote>
+<p>This is nested
+inside another quote</p>
+</blockquote>
+</blockquote>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="k">&gt; </span><span class="ge">Nested quotes:</span>
+<span class="k">&gt; </span><span class="ge">&gt; This is nested</span>
+<span class="k">&gt; </span><span class="ge">&gt; inside another quote</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="horizontal-rules">Horizontal Rules</h2>
+<p>Three or more dashes:</p>
+<hr>
+<p>Three or more asterisks:</p>
+<hr>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code><span class="gu">Three or more dashes:</span>
+<span class="gu">---</span>
+
+Three or more asterisks:
+***
+</code></pre></div>
+
+
+</details>
+
+<h2 id="line-breaks">Line Breaks</h2>
+<p>Hard line break with two spaces at end<br>
+This line follows a hard break</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>Hard line break with two spaces at end  
+This line follows a hard break
+</code></pre></div>
+
+
+Note: Two spaces at the end of the first line create the line break.
+</details>
+
+<p>Soft line break
+continues on same paragraph</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>Soft line break
+continues on same paragraph
+</code></pre></div>
+
+
+</details>
+
+<h2 id="footnotes">Footnotes</h2>
+<p>Here's a sentence with a footnote<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>Another footnote reference<sup id="fnref:note"><a class="footnote-ref" href="#fn:note">2</a></sup>.</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>Here&#39;s a sentence with a footnote[^1].
+
+Another footnote reference[^note].
+
+[<span class="nl">^1</span>]: <span class="na">This is the footnote content.</span>
+[<span class="nl">^note</span>]: <span class="na">Named footnotes work too.</span>
+</code></pre></div>
+
+
+</details>
+
+<h2 id="html-elements">HTML Elements</h2>
+<p>You can use <mark>HTML tags</mark> directly in markdown.</p>
+<details>
+<summary>Click to expand</summary>
+
+This content is hidden by default and can be expanded.
+
+</details>
+
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>You can use &lt;mark&gt;HTML tags&lt;/mark&gt; directly in markdown.
+
+&lt;details&gt;
+&lt;summary&gt;Click to expand&lt;/summary&gt;
+
+This content is hidden by default and can be expanded.
+
+&lt;/details&gt;
+</code></pre></div>
+
+
+</details>
+
+<h2 id="escape-characters">Escape Characters</h2>
+<p>*Not italic* - Escaped asterisks<br>
+`Not code` - Escaped backticks<br>
+[Not a link] - Escaped brackets</p>
+<details><summary>Show markdown syntax</summary>
+
+
+<div class="codehilite"><pre><span></span><code>\*Not italic\* - Escaped asterisks
+\`Not code\` - Escaped backticks
+\[Not a link\] - Escaped brackets
+</code></pre></div>
+
+
+</details>
+
+<hr>
+<p><strong>Note</strong>: This generator supports all standard CommonMark features plus Obsidian-style extensions like wiki links (<code>[Page Name](page-name.html)</code>) and highlights (<code>&lt;mark&gt;text&lt;/mark&gt;</code>). All elements are automatically styled by your chosen theme.</p>
+<div class="footnote">
+<hr>
+<ol>
+<li id="fn:1">
+<p>This is the footnote content.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:note">
+<p>Named footnotes work too.&#160;<a class="footnote-backref" href="#fnref:note" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+</article></body></html>
